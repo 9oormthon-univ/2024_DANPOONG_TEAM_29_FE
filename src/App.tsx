@@ -3,6 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Auth } from './pages/Auth';
 import { Feed } from './pages/Feed';
+import { Home } from './pages/Home';
 import LanguageSelection from './pages/LanguageSelection';
 import { MainLayout } from './pages/MainLayout';
 import { NotFound } from './pages/NotFound';
@@ -12,9 +13,8 @@ import { PetitionForm } from './pages/PetitionForm';
 import { PostDetail } from './pages/PostDetail';
 import { PostForm } from './pages/PostForm';
 import { SignUpForm } from './pages/SignUpForm';
-import { UserInfo } from './pages/UserInfoLayOut';
+import { UserInfo } from './pages/UserInfo';
 import { queryClient } from './services/TanstackQueryStore';
-
 const router = createBrowserRouter([
   {
     path: '/',
@@ -23,13 +23,13 @@ const router = createBrowserRouter([
     children: [
       {
         index: true,
-        element: <SignUpForm />,
+        element: <Home />,
       },
-
-      { path: 'auth', element: <Auth /> },
       {
-        path: 'login',
+        path: 'auth',
         children: [
+          { index: true, element: <Auth /> },
+          { path: 'signup', element: <SignUpForm /> },
           { path: 'language', element: <LanguageSelection /> },
           { path: 'userinfo', element: <UserInfo /> },
         ],

@@ -1,12 +1,18 @@
 import { useNavigate } from 'react-router-dom';
-const languageSelect = ['중국어', '베트남어', '따갈로그어(필리핀)', '태국어', '인도네시아'];
+const SUPPORTED_LANGUAGES = [
+  '중국어',
+  '베트남어',
+  '따갈로그어(필리핀)',
+  '태국어',
+  '인도네시아',
+] as const;
+type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 export const LanguageSelection = () => {
   const navigate = useNavigate();
 
-  const handleLanguageSelect = () => {
-    navigate('/login/form');
+  const handleLanguageSelect = (language: SupportedLanguage) => {
+    navigate('/', { state: { selectedLanguage: language } });
   };
-
   return (
     <div className="flex h-full flex-col items-center justify-center">
       <svg
@@ -180,11 +186,17 @@ export const LanguageSelection = () => {
         자주 사용하시는 언어를 선택해주세요
       </div>
       <div className="m-t-[3rem] flex w-[90%] flex-col border-b-[0.5px]">
-        {languageSelect.map((item) => (
+        {SUPPORTED_LANGUAGES.map((item) => (
           <button
+            role="option"
+            aria-selected="false"
             key={item}
             className="h-[2.2rem] w-[90%] border-t-[0.5px] border-t-[#D0D0D0] p-[0.3rem]"
-            onClick={handleLanguageSelect}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter' || e.key === ' ') {
+                handleLanguageSelect(item);
+              }
+            }}
           >
             {item}
           </button>

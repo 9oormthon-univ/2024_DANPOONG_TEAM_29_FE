@@ -3,7 +3,7 @@ export const SignUpForm = () => {
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    navigate('/login/form');
+    navigate('/auth/userinfo');
   };
 
   return (

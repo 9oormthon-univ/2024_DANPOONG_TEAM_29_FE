@@ -1,6 +1,8 @@
 import { useState } from 'react';
 
 import { useInfoStore } from '../store/useInfoStore';
+import { UserInfoType } from '../type/userInfoType';
+/** 바꾸어야 할 부분의 코드*/
 const titleList = [
   '사용하시는 언어가 무엇인가요?',
   '이름이 어떻게 되시나요?',
@@ -13,14 +15,20 @@ const titleList = [
 export const UserInfo = () => {
   const [titleNum, setTitleNum] = useState(0);
   const { userList, updateUser } = useInfoStore();
-  const curList = [...userList.slice(4 - titleNum, 5)];
+  const [isLoading, setIsLoading] = useState(false);
+  const [isValid, setIsValid] = useState(true);
+  const TOTAL_QUESTIONS = 5;
+  const startIndex = Math.max(TOTAL_QUESTIONS - titleNum - 1, 0);
+  const curList = [...userList.slice(startIndex, TOTAL_QUESTIONS)];
   function handleNextClick() {
-    setTitleNum((num) => num + 1);
+    setTitleNum((num) => Math.min(num + 1, titleList.length - 1));
   }
   function handlePrevClick() {
     setTitleNum((num) => Math.max(num - 1, 0));
   }
-  function handleChange(e: React.ChangeEvent<HTMLInputElement>, type: string) {
+  function handleChange(e: React.ChangeEvent<HTMLInputElement>, type: UserInfoType) {
+    const value = e.target.value.trim();
+    if (!value) return;
     updateUser(type, e.target.value);
   }
   return (
@@ -48,19 +56,28 @@ export const UserInfo = () => {
         {titleNum <= 4 &&
           curList.map((item) => (
             <input
+              id={`input-${item.type}`}
+              aria-label={item.type}
+              required
+              aria-required="true"
               key={item.type}
               className="mt-[2.2rem] h-[3rem] w-full border-b border-[#54BBFF]"
               placeholder={item.type}
               value={item.value}
               onChange={(e) => handleChange(e, item.type)}
+              onInvalid={(e) => {
+                e.preventDefault();
+              }}
             ></input>
           ))}
       </div>
       <button
-        className="bottom-[5rem] h-[3rem] w-[100%] rounded-xl bg-[#1A8CFF] text-center text-white"
+        className={`bottom-[5rem] h-[3rem] w-[100%] rounded-xl text-center text-white ${isValid ? 'bg-[#1A8CFF]' : 'cursor-not-allowed bg-gray-400'}`}
         onClick={handleNextClick}
+        disabled={!isValid || isLoading}
+        aria-busy={isLoading}
       >
-        다음
+        {isLoading ? '처리 중...' : '다음'}
       </button>
     </>
   );
