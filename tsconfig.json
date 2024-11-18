@@ -4,7 +4,8 @@
     "skipLibCheck": true,
     "jsx": "react-jsx",
     "strict": true,
-    "noFallthroughCasesInSwitch": true
+    "noFallthroughCasesInSwitch": true,
+    "types": ["vite/client"]
   },
   "references": [{ "path": "./tsconfig.app.json" }, { "path": "./tsconfig.node.json" }]
 }
