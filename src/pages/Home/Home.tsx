@@ -1,3 +1,5 @@
+import { useNavigate } from 'react-router-dom';
+
 import { Panel } from './components/Panel';
 import BookImg from '../../assets/book.png';
 import EarthImg from '../../assets/earth.png';
@@ -6,6 +8,8 @@ import { PetitionItem } from '../../components/petition/PetitionItem';
 import Spacing from '../../components/Spacing';
 
 export const Home = () => {
+  const navigate = useNavigate();
+
   return (
     <div className="flex flex-col gap-5">
       <div className="relative flex justify-end">
@@ -19,7 +23,8 @@ export const Home = () => {
 
       <div className="flex flex-col gap-2">
         <p className="text-xl font-bold">인기 이야기</p>
-        <Panel>
+        {/* TODO: 공감순으로 볼 수 있게 url 파라미터 추가 */}
+        <Panel onClick={() => navigate('/feed')}>
           <img src={LikeImg} />
           <Spacing direction="horizontal" size={0.5} />
           <div>
@@ -47,7 +52,8 @@ export const Home = () => {
 
       <div className="flex flex-col gap-2">
         <p className="text-xl font-bold">사용자 추천</p>
-        <Panel>
+        {/* TODO: 링크 수정 */}
+        <Panel onClick={() => navigate('/')}>
           <img src={BookImg} />
           <Spacing direction="horizontal" size={0.5} />
           <div>
