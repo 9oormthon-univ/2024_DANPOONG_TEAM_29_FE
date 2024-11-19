@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { UserInfoType } from '../type/userInfoType';
+import { UserInfoType } from '../types/userInfoType';
 interface UserItem {
   type: UserInfoType;
   value: string;

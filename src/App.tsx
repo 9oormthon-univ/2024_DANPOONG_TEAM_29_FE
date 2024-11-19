@@ -1,10 +1,12 @@
 import { QueryClientProvider } from '@tanstack/react-query';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
-import { Auth } from './pages/Auth';
+import { Auth } from './pages/Auth/Auth';
+import LanguageSelection from './pages/Auth/LanguageSelection';
+import { SignUpForm } from './pages/Auth/SignUpForm';
+import { UserInfo } from './pages/Auth/UserInfo';
 import { Feed } from './pages/Feed';
 import { Home } from './pages/Home';
-import LanguageSelection from './pages/LanguageSelection';
 import { MainLayout } from './pages/MainLayout';
 import { NotFound } from './pages/NotFound';
 import { PetitionDetail } from './pages/PetitionDetail';
@@ -12,8 +14,6 @@ import { PetitionFeed } from './pages/PetitionFeed';
 import { PetitionForm } from './pages/PetitionForm';
 import { PostDetail } from './pages/PostDetail';
 import { PostForm } from './pages/PostForm/PostForm';
-import { SignUpForm } from './pages/SignUpForm';
-import { UserInfo } from './pages/UserInfo';
 import { queryClient } from './services/TanstackQueryStore';
 
 const router = createBrowserRouter([

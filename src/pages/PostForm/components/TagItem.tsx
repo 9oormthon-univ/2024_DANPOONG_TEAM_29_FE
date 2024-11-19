@@ -1,4 +1,4 @@
-import DeleteIcon from '../../../assets/delete.svg?react';
+import DeleteIcon from '@/assets/delete.svg?react';
 
 export const TagItem = ({
   tagLabel,
@@ -9,7 +9,7 @@ export const TagItem = ({
 }) => {
   return (
     <div className="relative pr-[5px] pt-[6px]">
-      <span className="bg-primary flex h-[22px] items-center rounded-full border px-2 text-xs text-white">
+      <span className="flex h-[22px] items-center rounded-full border bg-primary px-2 text-xs text-white">
         #{tagLabel}
       </span>
       <DeleteIcon

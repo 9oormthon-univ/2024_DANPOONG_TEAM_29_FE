@@ -34,7 +34,7 @@ export const TagBottomSheet = ({ onAddTags, onClose }: TagBottomSheetProps) => {
       <div className="min-h-[50%] w-full rounded-t-[20px] bg-white p-5">
         <div className="flex justify-between gap-2">
           <input
-            className="border-light-gray flex h-9 grow rounded-[10px] border px-[11px] py-2"
+            className="flex h-9 grow rounded-[10px] border border-light-gray px-[11px] py-2"
             ref={inputRef}
           />
           {/* TODO: 버튼 디자인 요청 필요 */}
