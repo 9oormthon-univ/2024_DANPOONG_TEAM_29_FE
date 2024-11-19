@@ -41,7 +41,7 @@ export const PostForm = () => {
   };
 
   return (
-    <div>
+    <div className="flex h-full flex-col justify-center">
       <Input
         value={formData.title}
         onChange={(e) => updateField({ title: e.target.value })}
@@ -57,7 +57,7 @@ export const PostForm = () => {
           ({formData.description.length} / {500})
         </span>
       </div>
-      <div className="border-light-gray flex min-h-[329px] flex-col justify-between rounded-[10px] border px-[11px] py-2">
+      <div className="flex min-h-[329px] flex-col justify-between rounded-[10px] border border-light-gray px-[11px] py-2">
         <textarea
           className="h-[140px] w-full resize-none outline-none"
           value={formData.description}
