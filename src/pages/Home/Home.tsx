@@ -37,6 +37,7 @@ export const Home = () => {
       <div className="flex flex-col gap-2">
         <p className="text-xl font-bold">청원</p>
         <div className="grid grid-cols-2 gap-3">
+          {/* TODO: 서버 데이터로 교체 */}
           {[1, 2, 3, 4].map((n) => (
             <PetitionItem
               key={n}
