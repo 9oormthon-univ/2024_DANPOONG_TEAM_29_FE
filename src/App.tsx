@@ -11,10 +11,11 @@ import { PetitionDetail } from './pages/PetitionDetail';
 import { PetitionFeed } from './pages/PetitionFeed';
 import { PetitionForm } from './pages/PetitionForm';
 import { PostDetail } from './pages/PostDetail';
-import { PostForm } from './pages/PostForm';
+import { PostForm } from './pages/PostForm/PostForm';
 import { SignUpForm } from './pages/SignUpForm';
 import { UserInfo } from './pages/UserInfo';
 import { queryClient } from './services/TanstackQueryStore';
+
 const router = createBrowserRouter([
   {
     path: '/',
