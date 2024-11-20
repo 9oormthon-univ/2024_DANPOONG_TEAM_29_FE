@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Auth } from './pages/Auth';
 import { Feed } from './pages/Feed';
-import { Home } from './pages/Home';
+import { Home } from './pages/Home/Home';
 import LanguageSelection from './pages/LanguageSelection';
 import { MainLayout } from './pages/MainLayout';
 import { NotFound } from './pages/NotFound';
