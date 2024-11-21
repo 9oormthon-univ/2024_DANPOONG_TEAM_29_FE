@@ -1,5 +1,7 @@
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import ClipBoardImg from '@/assets/clipboard.png';
 import PetitionIcon from '@/assets/petition.svg?react';
 import { Button } from '@/components/Button';
@@ -27,12 +29,24 @@ const totalPetition = 10000;
 export const PetitionDetail = () => {
   const petitionPercent = calculatePercentage(totalPetition, dummyData.count);
   const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
   const onClose = () => {
     setIsOpen((oepn) => !oepn);
   };
+
+  const onSubmit = () => {
+    console.log('data send!!!');
+    navigate('/petition/complete');
+  };
   return (
     <>
-      <PetitionModal isOpen={isOpen} onClose={onClose} />
+      <PetitionModal
+        isOpen={isOpen}
+        onClose={onClose}
+        onSubmit={onSubmit}
+        name={dummyData.person}
+        title={dummyData.title}
+      />
       <div className="flex flex-col">
         <Spacing size={1.75} />
         <div className="flex items-center">

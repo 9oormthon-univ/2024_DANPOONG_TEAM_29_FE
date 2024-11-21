@@ -6,7 +6,6 @@ import { Input } from '@/components/Input';
 import Spacing from '@/components/Spacing';
 import { TopBarControl } from '@/components/TopBarControl';
 
-import { PetitionModal } from './components/PetitionModal';
 interface FormData {
   title: string;
   contents: string;
@@ -15,10 +14,6 @@ interface FormData {
 }
 
 export const PetitionForm = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  const onClose = () => {
-    setIsOpen((open) => !open);
-  };
   const [formData, setFormData] = useState<FormData>({
     title: '',
     category: '',
@@ -36,7 +31,6 @@ export const PetitionForm = () => {
 
   return (
     <>
-      <PetitionModal isOpen={isOpen} onClose={onClose} />
       <div className="flex flex-col">
         <div className="flex flex-row">
           {' '}
@@ -113,7 +107,7 @@ export const PetitionForm = () => {
         {/* TODO: 서버 API 연결 */}
         <Button
           buttonLabel="청원하기"
-          onClick={() => setIsOpen(true)}
+          onClick={() => console.log(formData)}
           disabled={formData.title == '' || formData.contents == '' || formData.intend == ''}
         />
       </div>
