@@ -2,7 +2,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { Auth } from './pages/Auth';
-import { Feed } from './pages/Feed';
+import { Feed } from './pages/Feed/Feed';
 import { Home } from './pages/Home/Home';
 import LanguageSelection from './pages/LanguageSelection';
 import { MainLayout } from './pages/MainLayout';
