@@ -13,7 +13,7 @@ export const RecommendUser = ({ userList }: { userList: RecommendUserInfo[] }) =
   return (
     <div>
       <p className="mb-3 text-xl">나와 비슷한 사용자 추천</p>
-      <div className="flex gap-4 overflow-scroll">
+      <div className="flex gap-4 overflow-scroll [&::-webkit-scrollbar]:hidden">
         {userList.map(({ nickName, profileImageUrl, part }) => (
           <div
             key={nickName}
