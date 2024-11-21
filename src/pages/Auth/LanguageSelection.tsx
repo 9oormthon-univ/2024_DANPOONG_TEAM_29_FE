@@ -48,4 +48,3 @@ export const LanguageSelection = () => {
   );
 };
 
-export default LanguageSelection;
