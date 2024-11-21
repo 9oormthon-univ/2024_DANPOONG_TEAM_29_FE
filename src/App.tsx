@@ -3,11 +3,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { LayoutWithNavigation } from './components/layout/LayoutWithNavigation';
 import { MainLayout } from './components/layout/MainLayout';
-import { Auth } from './pages/Auth/Auth';
+import { Auth } from './pages//Auth/Auth';
 import { LanguageSelection } from './pages/Auth/LanguageSelection';
 import { SignUpForm } from './pages/Auth/SignUpForm';
 import { UserInfo } from './pages/Auth/UserInfo';
-import { Feed } from './pages/Feed';
+import { Feed } from './pages/Feed/Feed';
 import { Home } from './pages/Home/Home';
 import { NotFound } from './pages/NotFound';
 import { PetitionDetail } from './pages/Petition/PetitionDetail';
