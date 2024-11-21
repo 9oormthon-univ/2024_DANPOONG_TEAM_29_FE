@@ -4,7 +4,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { LayoutWithNavigation } from './components/layout/LayoutWithNavigation';
 import { MainLayout } from './components/layout/MainLayout';
 import { Auth } from './pages/Auth';
-import { Feed } from './pages/Feed';
+import { Feed } from './pages/Feed/Feed';
 import { Home } from './pages/Home/Home';
 import LanguageSelection from './pages/LanguageSelection';
 import { NotFound } from './pages/NotFound';

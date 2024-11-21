@@ -1,0 +1,11 @@
+export type FilterType =
+  | 'CREATED_AT_DESC'
+  | 'LIKE_DESC'
+  | 'MANUFACTURING'
+  | 'CONSTRUCTION'
+  | 'LOGISTICS'
+  | 'SERVICE'
+  | 'AGRICULTURE'
+  | 'FISHERIES'
+  | 'HOUSECARE'
+  | 'PROFESSIONAL';
