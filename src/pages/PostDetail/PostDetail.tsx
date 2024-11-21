@@ -6,7 +6,7 @@ import EmptyLike from '../../assets/emptyLike.svg';
 import FillLike from '../../assets/fillLike.svg?react';
 import FollowIcon from '../../assets/follow.svg?react';
 import Spacing from '../../components/Spacing';
-import { TagItem } from '../Feed/components/TagItem';
+import { TagItem } from '../../components/tag/TagItem';
 
 const PostDummy = {
   hasNext: false,
