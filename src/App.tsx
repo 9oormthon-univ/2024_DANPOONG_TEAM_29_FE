@@ -9,9 +9,10 @@ import { Feed } from './pages/Feed';
 import { Home } from './pages/Home/Home';
 import { MainLayout } from './pages/MainLayout';
 import { NotFound } from './pages/NotFound';
-import { PetitionForm } from './pages/Petition/PetitionForm';
-import { PetitionDetail } from './pages/PetitionDetail';
+import { PetitionDetail } from './pages/Petition/PetitionDetail';
 import { PetitionFeed } from './pages/Petition/PetitionFeed';
+import { PetitionForm } from './pages/Petition/PetitionForm';
+import { PetitionLayout } from './pages/Petition/PetitionLayer';
 import { PostDetail } from './pages/PostDetail';
 import { PostForm } from './pages/PostForm/PostForm';
 import { queryClient } from './services/TanstackQueryStore';
@@ -39,7 +40,6 @@ const router = createBrowserRouter([
         path: 'feed',
         element: <Feed />,
       },
-
       {
         path: 'post/:postId',
         element: <PostDetail />,
@@ -49,12 +49,15 @@ const router = createBrowserRouter([
         element: <PostForm />,
       },
       {
-        path: 'petition/feed',
-        element: <PetitionFeed />,
-      },
-      {
-        path: 'petition/:petitionId',
-        element: <PetitionDetail />,
+        path: 'petition',
+        element: <PetitionLayout />,
+        children: [
+          { path: 'feed', element: <PetitionFeed /> },
+          {
+            path: ':petitionId',
+            element: <PetitionDetail />,
+          },
+        ],
       },
       {
         path: 'petition/create',

@@ -1,63 +1,70 @@
-import AlarmIcon from '@/assets/alarm.svg?react';
-import DetailButtonIcon from '@/assets/detailButton.svg?react';
+import { useState } from 'react';
 
-import { PetitionItem } from '../../components/petition/PetitionItem';
-import Spacing from '../../components/Spacing';
-import { TopBarControl } from '../../components/TopBarControl';
+import ToggleButtonIcon from '@/assets/toggle.svg?react';
+import { PetitionItem } from '@/components/petition/PetitionItem';
+import Spacing from '@/components/Spacing';
+const dummyData = [
+  {
+    category: '노동 환경 개선',
+    title: '불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청',
+    startDate: '2024.11.14',
+    endDate: '2024.11.29',
+    count: 1000,
+  },
+  {
+    category: '노동 환경 개선',
+    title: '불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청',
+    startDate: '2024.11.14',
+    endDate: '2024.11.29',
+    count: 1000,
+  },
+  {
+    category: '노동 환경 개선',
+    title: '불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청',
+    startDate: '2024.11.14',
+    endDate: '2024.11.29',
+    count: 1000,
+  },
+  {
+    category: '노동 환경 개선',
+    title: '불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청',
+    startDate: '2024.11.14',
+    endDate: '2024.11.29',
+    count: 1000,
+  },
+  {
+    category: '노동 환경 개선',
+    title: '불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청',
+    startDate: '2024.11.14',
+    endDate: '2024.11.29',
+    count: 1000,
+  },
+  {
+    category: '노동 환경 개선',
+    title: '불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청',
+    startDate: '2024.11.14',
+    endDate: '2024.11.29',
+    count: 1000,
+  },
+];
 export const PetitionFeed = () => {
-  const handlePrevClick = () => {
-    return;
-  };
+  //  TODO: 리액트 쿼리로 바꿀예정
+  const [petitionList] = useState(dummyData);
   return (
-    <div className="flex h-full flex-col">
-      <TopBarControl handlePrevClick={handlePrevClick} title="청원" size={3}>
-        <Spacing size={10} direction="horizontal"></Spacing>
-        <AlarmIcon />
-        <DetailButtonIcon />
-      </TopBarControl>
+    <div className="flex-col">
+      <Spacing size={1.4}></Spacing>
+      <div className="flex w-full flex-row-reverse">
+        <div className="flex h-[1rem] w-[1rem] items-center">
+          <ToggleButtonIcon className="h-[0.5rem] w-[0.7rem]" />
+        </div>
+        <span className="text-center text-xs font-extrabold">최신순</span>
+      </div>
+      <Spacing size={2}></Spacing>
       <div className="max-h-4xl grid h-[600px] grid-cols-2 gap-4 overflow-auto">
-        <PetitionItem
-          category="노동 환경 개선"
-          title="불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청"
-          startDate="2024.11.14"
-          endDate="2024.11.29"
-          count={1000}
-        />
-        <PetitionItem
-          category="노동 환경 개선"
-          title="불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청"
-          startDate="2024.11.14"
-          endDate="2024.11.29"
-          count={1000}
-        />
-        <PetitionItem
-          category="노동 환경 개선"
-          title="불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청"
-          startDate="2024.11.14"
-          endDate="2024.11.29"
-          count={1000}
-        />
-        <PetitionItem
-          category="노동 환경 개선"
-          title="불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청"
-          startDate="2024.11.14"
-          endDate="2024.11.29"
-          count={1000}
-        />
-        <PetitionItem
-          category="노동 환경 개선"
-          title="불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청"
-          startDate="2024.11.14"
-          endDate="2024.11.29"
-          count={1000}
-        />
-        <PetitionItem
-          category="노동 환경 개선"
-          title="불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청"
-          startDate="2024.11.14"
-          endDate="2024.11.29"
-          count={1000}
-        />
+        {petitionList.map((item) => (
+          // eslint-disable-next-line react/jsx-key
+          <PetitionItem {...item} />
+        ))}
       </div>
     </div>
   );

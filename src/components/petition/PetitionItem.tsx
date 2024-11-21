@@ -1,6 +1,6 @@
-import ClipBoardImg from '../../assets/clipboard.png';
-import PetitionIcon from '../../assets/petition.svg?react';
-import { formatNumber } from '../../utils/formatNumber';
+import ClipBoardImg from '@/assets/clipboard.png';
+import PetitionIcon from '@/assets/petition.svg?react';
+import { formatNumber } from '@/utils/formatNumber';
 
 // TODO: 서버 스키마와 일치 시키기
 interface PetitionItemProps {

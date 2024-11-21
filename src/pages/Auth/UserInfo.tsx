@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom';
 import PrevClickIcon from '@/assets/prevClick.svg?react';
 
 import { AuthMainTitle } from './components/AuthMainTitle';
+import Spacing from '../../components/Spacing';
 import { useInfoStore } from '../../store/useInfoStore';
 import { UserItem } from '../../types/userInfoType';
 const titleList = [
@@ -120,25 +121,28 @@ export const UserInfo = () => {
   };
 
   return (
-    <div className="flex h-full w-full flex-col items-center justify-center">
+    <div className="w-full flex-col items-center">
       {titleNum < 5 ? (
-        <div className="top-[3rem] flex h-[10%] w-full flex-col items-center justify-center">
+        <div className="top-[3rem] flex h-[5rem] w-full flex-col items-center justify-center">
           <button className="w-[100%]" onClick={handlePrevClick}>
             <PrevClickIcon />
           </button>
           <div className="mt-[2rem] w-full text-xl font-bold">{titleList[titleNum]}</div>
         </div>
       ) : (
-        <div className="mb-[10%] flex w-full flex-col items-center">
-          <AuthMainTitle
-            title={titleList[titleNum]}
-            authStyle=" m-[2rem] h-[1.4375rem] w-full text-center text-2xl font-bold"
-          />
-        </div>
+        <>
+          <Spacing size={10} />
+          <div className="mb-[10%] flex w-full flex-col items-center">
+            <AuthMainTitle
+              title={titleList[titleNum]}
+              authStyle=" m-[2rem] h-[1.4375rem] w-full text-center text-2xl font-bold"
+            />
+          </div>
+        </>
       )}
 
       {titleNum <= 4 && (
-        <form className="flex h-[80%] w-full flex-col">
+        <form className="flex h-[30rem] w-full flex-col">
           {curList.map((item) => (
             <div key={item.name} className="mt-[2.2rem]">
               {item.name === 'career' || item.name === 'language' ? (
