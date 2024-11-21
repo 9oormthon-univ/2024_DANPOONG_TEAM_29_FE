@@ -6,11 +6,12 @@ import { MainLayout } from './components/layout/MainLayout';
 import { Auth } from './pages/Auth';
 import { Feed } from './pages/Feed';
 import { Home } from './pages/Home/Home';
-import LanguageSelection from './pages/LanguageSelection';
+import { MainLayout } from './pages/MainLayout';
 import { NotFound } from './pages/NotFound';
-import { PetitionDetail } from './pages/PetitionDetail';
-import { PetitionFeed } from './pages/PetitionFeed';
-import { PetitionForm } from './pages/PetitionForm';
+import { PetitionDetail } from './pages/Petition/PetitionDetail';
+import { PetitionFeed } from './pages/Petition/PetitionFeed';
+import { PetitionForm } from './pages/Petition/PetitionForm';
+import { PetitionLayout } from './pages/Petition/PetitionLayer';
 import { PostDetail } from './pages/PostDetail';
 import { PostForm } from './pages/PostForm/PostForm';
 import { SignUpForm } from './pages/SignUpForm';
@@ -33,12 +34,27 @@ const router = createBrowserRouter([
         ],
       },
       {
+        path: 'feed',
+        element: <Feed />,
+      },
+      {
+        path: 'post/:postId',
+        element: <PostDetail />,
+      },
+      {
         path: 'post/create',
         element: <PostForm />,
       },
       {
-        path: 'petition/:petitionId',
-        element: <PetitionDetail />,
+        path: 'petition',
+        element: <PetitionLayout />,
+        children: [
+          { path: 'feed', element: <PetitionFeed /> },
+          {
+            path: ':petitionId',
+            element: <PetitionDetail />,
+          },
+        ],
       },
       {
         path: 'petition/create',
