@@ -8,6 +8,8 @@ interface RecommendUserInfo {
 }
 
 export const RecommendUser = ({ userList }: { userList: RecommendUserInfo[] }) => {
+  if (userList.length == 0) return;
+
   return (
     <div>
       <p className="mb-3 text-xl">나와 비슷한 사용자 추천</p>
