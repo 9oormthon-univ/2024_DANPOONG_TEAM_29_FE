@@ -7,7 +7,7 @@ export const SignUpForm = () => {
   };
 
   return (
-    <div className="flex h-full flex-col items-center justify-center">
+    <div className="flex h-full flex-col items-center">
       <svg
         width="165"
         height="165"
