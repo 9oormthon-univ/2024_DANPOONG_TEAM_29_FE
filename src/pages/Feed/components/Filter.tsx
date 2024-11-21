@@ -10,7 +10,7 @@ import HousecareIcon from '../../../assets/filter_housecare.svg?react';
 import LikeDescIcon from '../../../assets/filter_like.svg?react';
 import LogisticsIcon from '../../../assets/filter_logistics.svg?react';
 import ManufacturingIcon from '../../../assets/filter_manufacturing.svg?react';
-// import ProfessionalIcon from '../../../assets/filter_professional.svg?react';
+import ProfessionalIcon from '../../../assets/filter_professional.svg?react';
 import ServiceIcon from '../../../assets/filter_service.svg?react';
 import CreatedAtDescIcon from '../../../assets/filter_time.svg?react';
 import FilterCloseIcon from '../../../assets/filterClose.svg?react';
@@ -26,7 +26,7 @@ const FILTER_TYPE: { filter: FilterType; icon: React.ReactNode }[] = [
   { filter: 'AGRICULTURE', icon: <AgricultureIcon /> },
   { filter: 'FISHERIES', icon: <FisheriesIcon /> },
   { filter: 'HOUSECARE', icon: <HousecareIcon /> },
-  //   { filter: 'PROFESSIONAL', icon: <ProfessionalIcon /> },
+  { filter: 'PROFESSIONAL', icon: <ProfessionalIcon /> },
 ];
 
 export const Filter = () => {
@@ -49,7 +49,7 @@ export const Filter = () => {
       {isFilterVisible ? (
         <div className="flex items-center">
           <FilterCloseIcon onClick={handleIsFilterVisible} />
-          <div className="ml-1 flex gap-[10px] rounded-full bg-[#F7F7F7] px-2 py-1">
+          <div className="ml-1 flex gap-[7px] rounded-full bg-[#F7F7F7] px-2 py-1">
             {FILTER_TYPE.map(({ filter, icon }) => (
               <div
                 key={filter}
