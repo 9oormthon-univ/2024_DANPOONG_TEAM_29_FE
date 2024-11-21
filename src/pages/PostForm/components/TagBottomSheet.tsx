@@ -1,5 +1,6 @@
 import { useState, useRef } from 'react';
 
+import TagPlusIcon from '../../../assets/tagPlus.svg?react';
 import Spacing from '../../../components/Spacing';
 import { TagItem } from '../components/TagItem';
 
@@ -30,16 +31,20 @@ export const TagBottomSheet = ({ onAddTags, onClose }: TagBottomSheetProps) => {
   };
 
   return (
-    <div className="z-999 absolute left-0 top-0 flex h-full w-full items-end bg-[rgba(0,0,0,0.5)]">
-      <div className="min-h-[50%] w-full rounded-t-[20px] bg-white p-5">
-        <div className="flex justify-between gap-2">
+    <div
+      className="z-999 absolute left-0 top-0 flex h-full w-full items-end bg-[rgba(0,0,0,0.5)]"
+      onClick={handleClose}
+    >
+      <div
+        className="animate-slide-up min-h-[50%] w-full rounded-t-[20px] bg-white p-5"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between gap-2">
           <input
-            className="flex h-9 grow rounded-[10px] border border-light-gray px-[11px] py-2"
+            className="flex h-9 grow rounded-[10px] bg-[#E6E6E6] px-[11px] py-2"
             ref={inputRef}
           />
-          {/* TODO: 버튼 디자인 요청 필요 */}
-          <button onClick={handleAddTag}>추가</button>
-          <button onClick={handleClose}>닫기</button>
+          <TagPlusIcon onClick={handleAddTag} />
         </div>
         <Spacing size={1} />
         <div className="flex flex-wrap gap-1">
