@@ -176,4 +176,3 @@ export const AuthMainTitle = ({ authStyle, title }: AuthProps) => {
     </>
   );
 };
-//m-[2rem] h-[1.4375rem] w-full text-center text-2xl font-bold
