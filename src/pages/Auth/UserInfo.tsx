@@ -143,14 +143,15 @@ export const UserInfo = () => {
 
       {titleNum <= 4 && (
         <form className="flex h-[30rem] w-full flex-col">
-          {curList.map((item) => (
+          {curList.map((item, index) => (
             <div key={item.name} className="mt-[2.2rem]">
               {item.name === 'career' || item.name === 'language' ? (
                 <select
+                  disabled={index >= 1}
                   id={`input-${item.name}`}
                   {...register(item.name)}
                   aria-invalid={errors[item.name] ? 'true' : 'false'}
-                  className="h-[3rem] w-full border-b border-[#54BBFF] outline-none"
+                  className="h-[3rem] w-full border-b border-[#54BBFF] outline-none disabled:bg-transparent disabled:text-[#838383]"
                 >
                   <option value="" disabled>
                     {item.name} 선택
@@ -164,9 +165,10 @@ export const UserInfo = () => {
               ) : (
                 <input
                   id={`input-${item.name}`}
+                  disabled={index >= 1}
                   {...register(item.name, item.validation)}
                   aria-invalid={errors[item.name] ? 'true' : 'false'}
-                  className="h-[3rem] w-full border-b border-[#54BBFF] outline-none"
+                  className="h-[3rem] w-full border-b border-[#54BBFF] outline-none disabled:bg-transparent disabled:text-[#838383]"
                   placeholder={item.name}
                 />
               )}

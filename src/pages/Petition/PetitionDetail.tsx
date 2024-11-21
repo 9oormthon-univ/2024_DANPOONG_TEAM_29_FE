@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useRef } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
@@ -28,10 +28,11 @@ const dummyData = {
 const totalPetition = 10000;
 export const PetitionDetail = () => {
   const petitionPercent = calculatePercentage(totalPetition, dummyData.count);
-  const [isOpen, setIsOpen] = useState(false);
   const navigate = useNavigate();
+
+  const ref = useRef<HTMLDialogElement >(null);
   const onClose = () => {
-    setIsOpen((oepn) => !oepn);
+    ref.current?.close();
   };
 
   const onSubmit = () => {
@@ -41,11 +42,11 @@ export const PetitionDetail = () => {
   return (
     <>
       <PetitionModal
-        isOpen={isOpen}
         onClose={onClose}
         onSubmit={onSubmit}
         name={dummyData.person}
         title={dummyData.title}
+        ref={ref}
       />
       <div className="flex flex-col">
         <Spacing size={1.75} />
@@ -80,7 +81,7 @@ export const PetitionDetail = () => {
         <p className="text-lg font-bold">청원의 내용</p>
         <p className="leading-0.1 text-xs tracking-[-0.04em]">{dummyData.contents}</p>
         <Spacing size={7} />
-        <Button buttonLabel="청원하기" onClick={() => setIsOpen(true)} />
+        <Button buttonLabel="청원하기" onClick={() => ref.current?.showModal()} />
       </div>
     </>
   );

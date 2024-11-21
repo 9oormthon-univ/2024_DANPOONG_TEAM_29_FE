@@ -30,7 +30,7 @@ export const Input = ({
         )}
       </div>
       <input
-        className="h-9 rounded-[10px] border border-light-gray px-[11px] py-2 focus:border-[#228CFF]"
+        className="h-9 rounded-[10px] border border-light-gray px-[11px] py-2 outline-none  focus:ring-1 focus:ring-[#228CFF]"
         value={value}
         onChange={onChange}
         {...props}
