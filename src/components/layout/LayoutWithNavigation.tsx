@@ -8,7 +8,9 @@ export const LayoutWithNavigation = () => {
   return (
     <div className="bg-gray-100 flex h-screen w-screen flex-col items-center justify-center">
       <div className="relative flex h-full w-full max-w-[400px] justify-center overflow-scroll rounded-lg bg-white p-6 shadow-md [&::-webkit-scrollbar]:hidden">
-        <Outlet />
+        <div className="h-fit w-full pb-[110px]">
+          <Outlet />
+        </div>
         <BottomNavigation />
       </div>
     </div>
