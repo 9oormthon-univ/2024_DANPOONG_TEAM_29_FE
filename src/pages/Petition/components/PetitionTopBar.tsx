@@ -1,7 +1,7 @@
 import AlarmIcon from '@/assets/alarm.svg?react';
 import DetailButtonIcon from '@/assets/detailButton.svg?react';
+import { TopBarControl } from '@/components/TopBarControl';
 
-import { TopBarControl } from '../../../components/TopBarControl';
 interface TopBarControlProps {
   handlePrevClick: () => void;
 }

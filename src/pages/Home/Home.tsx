@@ -1,12 +1,13 @@
 import { useNavigate } from 'react-router-dom';
 
+import BookImg from '@/assets/book.png';
+import EarthImg from '@/assets/earth.png';
+import LikeImg from '@/assets/like.png';
+import LogoImg from '@/assets/logo.png';
+import { PetitionItem } from '@/components/petition/PetitionItem';
+import Spacing from '@/components/Spacing';
+
 import { Panel } from './components/Panel';
-import BookImg from '../../assets/book.png';
-import EarthImg from '../../assets/earth.png';
-import LikeImg from '../../assets/like.png';
-import LogoImg from '../../assets/logo.png';
-import { PetitionItem } from '../../components/petition/PetitionItem';
-import Spacing from '../../components/Spacing';
 
 export const Home = () => {
   const navigate = useNavigate();

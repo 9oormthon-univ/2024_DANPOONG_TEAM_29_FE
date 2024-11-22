@@ -1,9 +1,9 @@
 import { useState, useRef } from 'react';
 
-import TagPlusIcon from '../../../assets/tagPlus.svg?react';
-import Spacing from '../../../components/Spacing';
-import { TagItem } from '../components/TagItem';
+import TagPlusIcon from '@/assets/tagPlus.svg?react';
+import Spacing from '@/components/Spacing';
 
+import { TagItem } from './TagItem';
 interface TagBottomSheetProps {
   onAddTags: (target: string[]) => void;
   onClose: () => void;
@@ -36,7 +36,7 @@ export const TagBottomSheet = ({ onAddTags, onClose }: TagBottomSheetProps) => {
       onClick={handleClose}
     >
       <div
-        className="animate-slide-up min-h-[50%] w-full rounded-t-[20px] bg-white p-5"
+        className="min-h-[50%] w-full animate-slide-up rounded-t-[20px] bg-white p-5"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-between gap-2">

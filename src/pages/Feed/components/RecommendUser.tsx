@@ -1,4 +1,4 @@
-import FollowIcon from '../../../assets/follow.svg?react';
+import FollowIcon from '@/assets/follow.svg?react';
 
 interface RecommendUserInfo {
   userId: number;

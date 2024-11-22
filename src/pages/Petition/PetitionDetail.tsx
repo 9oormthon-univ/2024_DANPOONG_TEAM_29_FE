@@ -3,15 +3,16 @@ import { useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 import ClipBoardImg from '@/assets/clipboard.png';
-import PetitionIcon from '@/assets/petition.svg?react';
+import PetitionIcon from '@/assets/petition/petition.svg?react';
 import { Button } from '@/components/Button';
 import Spacing from '@/components/Spacing';
 import { ProgressBar } from '@/pages/Petition/components/ProgressBar';
-import { calculatePercentage } from '@/utils/caculatePercentage';
+import { calculatePercentage } from '@/utils/calculatePercentage';
 import { formatName } from '@/utils/formatName';
 import { formatNumber } from '@/utils/formatNumber';
 
 import { PetitionModal } from './components/PetitionModal';
+
 const dummyData = {
   category: '노동 환경 개선',
   title: '불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청',
@@ -30,7 +31,7 @@ export const PetitionDetail = () => {
   const petitionPercent = calculatePercentage(totalPetition, dummyData.count);
   const navigate = useNavigate();
 
-  const ref = useRef<HTMLDialogElement >(null);
+  const ref = useRef<HTMLDialogElement>(null);
   const onClose = () => {
     ref.current?.close();
   };

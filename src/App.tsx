@@ -3,7 +3,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { LayoutWithNavigation } from './components/layout/LayoutWithNavigation';
 import { MainLayout } from './components/layout/MainLayout';
-import { Auth } from './pages//Auth/Auth';
+import { Auth } from './pages/Auth/Auth';
 import { LanguageSelection } from './pages/Auth/LanguageSelection';
 import { SignUpForm } from './pages/Auth/SignUpForm';
 import { UserInfo } from './pages/Auth/UserInfo';
@@ -14,7 +14,7 @@ import { PetitionComplete } from './pages/Petition/PetitionComplete';
 import { PetitionDetail } from './pages/Petition/PetitionDetail';
 import { PetitionFeed } from './pages/Petition/PetitionFeed';
 import { PetitionForm } from './pages/Petition/PetitionForm';
-import { PetitionLayout } from './pages/Petition/PetitionLayer';
+import { PetitionLayout } from './pages/Petition/PetitionLayout';
 import { PostDetail } from './pages/PostDetail/PostDetail';
 import { PostForm } from './pages/PostForm/PostForm';
 import { queryClient } from './services/TanstackQueryStore';
@@ -32,14 +32,6 @@ const router = createBrowserRouter([
           { path: 'language', element: <LanguageSelection /> },
           { path: 'userinfo', element: <UserInfo /> },
         ],
-      },
-      {
-        path: 'feed',
-        element: <Feed />,
-      },
-      {
-        path: 'post/:postId',
-        element: <PostDetail />,
       },
       {
         path: 'post/create',

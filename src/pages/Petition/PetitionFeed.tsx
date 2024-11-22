@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ToggleButtonIcon from '@/assets/toggle.svg?react';
 import { PetitionItem } from '@/components/petition/PetitionItem';
 import Spacing from '@/components/Spacing';
+
 const dummyData = [
   {
     category: '노동 환경 개선',
@@ -62,8 +63,7 @@ export const PetitionFeed = () => {
       <Spacing size={2}></Spacing>
       <div className="max-h-4xl grid h-[600px] grid-cols-2 gap-4 overflow-auto">
         {petitionList.map((item) => (
-          // eslint-disable-next-line react/jsx-key
-          <PetitionItem {...item} />
+          <PetitionItem {...item} key={item.category} />
         ))}
       </div>
     </div>

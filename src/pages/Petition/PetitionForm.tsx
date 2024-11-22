@@ -2,14 +2,13 @@ import { useRef, useState } from 'react';
 
 import { useNavigate } from 'react-router-dom';
 
-import EraseIcon from '@/assets/eraser.svg?react';
-import PencilIcon from '@/assets/pencil.svg?react';
+import EraseIcon from '@/assets/petition/eraser.png';
+import PencilIcon from '@/assets/petition/pencil.png';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import { Modal } from '@/components/Modal';
 import Spacing from '@/components/Spacing';
 import { TopBarControl } from '@/components/TopBarControl';
-
 interface FormData {
   title: string;
   contents: string;
@@ -45,7 +44,11 @@ export const PetitionForm = () => {
     contents: '',
     intend: '',
   });
-
+  const isValid =
+    formData.title === '' ||
+    formData.contents === '' ||
+    formData.intend === '' ||
+    formData.category === '';
   const updateField = (field: Partial<FormData>) => {
     setFormData((prev) => {
       return { ...prev, ...field };
@@ -70,7 +73,7 @@ export const PetitionForm = () => {
         disabled={false}
       >
         <div className="flex flex-col items-center">
-          <EraseIcon />
+          <img src={EraseIcon} alt="eraser" className="h-[150px] w-[150px]" />
           <p className="text-sm font-bold leading-[25px]">
             청원 제출 후에는 수정이나 삭제가 어렵습니다.
           </p>
@@ -88,13 +91,13 @@ export const PetitionForm = () => {
             title="청원 내용을 입력해주세요"
             size={15}
           ></TopBarControl>
-          <PencilIcon />
+          <span className="inline-flex items-center">
+            <img src={PencilIcon} alt="pencil" className="h-[24px] w-[24px]" />
+          </span>
         </div>
 
         <Spacing size={4} />
-        <span className="text-base">
-          분야 <span className="font-bold text-[#FF0000]">*</span>
-        </span>
+        <span className="text-base font-bold">분야</span>
         <Spacing size={0.75} />
         <select
           className="h-9 w-full rounded-[10px] border border-light-gray px-3 py-2 outline-none focus:ring-1 focus:ring-[#228CFF]"
@@ -117,19 +120,14 @@ export const PetitionForm = () => {
           fieldLabel="제목"
           placeholder="제목을 입력해주세요"
           maxLength={100}
-          lengthOption={false}
-        >
-          <span className="font-bold text-[#FF0000]">*</span>
-        </Input>
+        ></Input>
         <Spacing size={1.75} />
         <div className="mb-[9px] flex justify-between">
-          <span className="text-base">
-            청원의 취지 <span className="font-bold text-[#FF0000]">*</span>
-          </span>
+          <span className="text-base font-bold">청원의 취지</span>
         </div>
         <div className="flex min-h-[80px] flex-col justify-between rounded-[10px] border border-light-gray px-[11px] py-2">
           <textarea
-            className="h-[140px] w-full resize-none outline-none focus:outline-[#228CFF] "
+            className="h-[140px] w-full resize-none whitespace-pre-wrap rounded-md outline-none focus:caret-[#54BBFF] focus:outline-[#228CFF]"
             value={formData.intend}
             onChange={(e) => updateField({ intend: e.target.value })}
             placeholder="내용을 입력해주세요"
@@ -138,18 +136,17 @@ export const PetitionForm = () => {
         <Spacing size={1.75} />
 
         <div className="mb-[9px] flex justify-between">
-          <span className="text-base">
-            청원의 내용 <span className="font-bold text-[#FF0000]">*</span>
-          </span>
+          <span className="text-base font-bold">청원의 내용</span>
         </div>
         <div className="flex min-h-[329px] flex-col justify-between rounded-[10px] border border-light-gray px-[11px] py-2">
           <textarea
-            className="h-[140px] w-full resize-none outline-none focus:outline-[#228CFF]"
+            className="h-[329px] w-full resize-none whitespace-pre-wrap rounded-md border-none outline-none focus:caret-[#54BBFF] focus:outline-[#228CFF]"
             value={formData.contents}
             onChange={(e) => updateField({ contents: e.target.value })}
             placeholder="내용을 입력해주세요"
           />
         </div>
+        <p className="text-xs text-[#FF7A7A]"></p>
 
         <Spacing size={0.75} />
 
@@ -157,12 +154,10 @@ export const PetitionForm = () => {
         <Button
           buttonLabel="청원하기"
           onClick={() => ref.current?.showModal()}
-          disabled={
-            formData.title === '' ||
-            formData.contents === '' ||
-            formData.intend === '' ||
-            formData.category === ''
-          }
+          disabled={isValid}
+          style={{
+            backgroundColor: !isValid ? '#1A8CFF' : '#B5B5B5',
+          }}
         />
       </div>
     </>

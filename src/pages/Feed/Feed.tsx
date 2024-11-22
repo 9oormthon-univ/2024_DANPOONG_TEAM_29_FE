@@ -1,7 +1,8 @@
+import Spacing from '@/components/Spacing';
+
 import { Filter } from './components/Filter';
 import { PostItem } from './components/PostItem';
 import { RecommendUser } from './components/RecommendUser';
-import Spacing from '../../components/Spacing';
 
 // TODO: 서버 연결
 const postDummy = [

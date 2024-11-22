@@ -111,7 +111,14 @@ const PetitionModal = forwardRef<HTMLDialogElement, PetitionModalProps>(
             onTouchEnd={stopDrawing}
           ></canvas>
           <Spacing size={2} />
-          <Button buttonLabel="동의하기" onClick={onSubmit} disabled={render} />
+          <Button
+            buttonLabel="동의하기"
+            onClick={onSubmit}
+            disabled={render}
+            style={{
+              backgroundColor: !render ? '#1A8CFF' : '#B5B5B5',
+            }}
+          />
         </div>
       </dialog>
     );

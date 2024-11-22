@@ -1,5 +1,5 @@
 import ClipBoardImg from '@/assets/clipboard.png';
-import PetitionIcon from '@/assets/petition.svg?react';
+import PetitionIcon from '@/assets/petition/petition.svg?react';
 import { formatNumber } from '@/utils/formatNumber';
 
 // TODO: 서버 스키마와 일치 시키기
@@ -19,7 +19,6 @@ export const PetitionItem = ({ category, title, count, startDate, endDate }: Pet
           <p className="inline-block text-[10px] text-[#228CFF]">{category}</p>
           <img src={ClipBoardImg} className="h-[13px] w-[13px]" alt="petition icon" />
         </div>
-
         <p className="font-bold">{title}</p>
       </div>
 

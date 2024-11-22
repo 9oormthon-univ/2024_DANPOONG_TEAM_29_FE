@@ -4,11 +4,13 @@ import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
 import PrevClickIcon from '@/assets/prevClick.svg?react';
+import { Button } from '@/components/Button';
+import Spacing from '@/components/Spacing';
+import { useInfoStore } from '@/store/useInfoStore';
+import { UserItem } from '@/types/userInfoType';
 
 import { AuthMainTitle } from './components/AuthMainTitle';
-import Spacing from '../../components/Spacing';
-import { useInfoStore } from '../../store/useInfoStore';
-import { UserItem } from '../../types/userInfoType';
+
 const titleList = [
   '사용하시는 언어가 무엇인가요?',
   '이름이 어떻게 되시나요?',
@@ -25,27 +27,50 @@ interface IFormInput {
   nickName: string;
   language: string;
 }
+
 const areaName = [
   {
     name: 'nickName',
+    label: '닉네임',
     type: 'text',
     validation: {
-      required: true,
+      required: {
+        value: true,
+        message: '닉네임은 필수 항목입니다.',
+      },
       maxLength: 20,
-      pattern: /^[a-zA-Z가-힣]+$/, // 한글 및 알파벳만 허용
+      pattern: {
+        value: /^[a-zA-Z가-힣]+$/,
+        message: '닉네임에는 숫자나 특수문자를 사용할 수 없습니다.',
+      },
     },
   },
   {
     name: 'age',
+    label: '나이',
     type: 'number',
     validation: {
-      required: true,
-      min: 18,
-      max: 99,
+      required: {
+        value: true,
+        message: '나이는 필수 항목입니다.',
+      },
+      min: {
+        value: 18,
+        message: '나이는 최소 18세 이상이어야 합니다.',
+      },
+      max: {
+        value: 99,
+        message: '나이는 99세 이하이어야 합니다.',
+      },
+      pattern: {
+        value: /^[0-9]+$/,
+        message: '숫자만 입력할 수 있습니다.',
+      },
     },
   },
   {
     name: 'career',
+    label: '직업',
     type: 'select',
     options: [
       '제조업',
@@ -57,18 +82,32 @@ const areaName = [
       '가사 및 돌봄',
       '전문직',
     ],
+    validation: {
+      required: {
+        value: true,
+        message: '직업은 필수 항목입니다.',
+      },
+    },
   },
   {
     name: 'name',
+    label: '이름',
     type: 'text',
     validation: {
-      required: true,
+      required: {
+        value: true,
+        message: '이름은 필수 항목입니다.',
+      },
       maxLength: 50,
-      pattern: /^[a-zA-Z가-힣]+$/, // 한글 및 알파벳만 허용
+      pattern: {
+        value: /^[a-zA-Z가-힣]+$/,
+        message: '이름에는 숫자나 특수문자를 사용할 수 없습니다.',
+      },
     },
   },
   {
     name: 'language',
+    label: '언어',
     type: 'select',
     options: [
       '한국어',
@@ -79,6 +118,12 @@ const areaName = [
       '인도네시아어',
       '싱할라어(스리라카)',
     ],
+    validation: {
+      required: {
+        value: true,
+        message: '언어는 필수 항목입니다.',
+      },
+    },
   },
 ] as const;
 
@@ -88,14 +133,13 @@ export const UserInfo = () => {
   const [isLoading, setIsLoading] = useState(false);
   const onSubmit = (data: UserItem[]) => {
     setUserList(data);
-    //console.log(data);
   };
   const {
     register,
     handleSubmit,
     formState: { errors, isValid },
   } = useForm<IFormInput>({
-    mode: 'onChange', // 실시간으로 폼 유효성 검사
+    mode: 'onChange',
   });
 
   const navigate = useNavigate();
@@ -146,47 +190,55 @@ export const UserInfo = () => {
           {curList.map((item, index) => (
             <div key={item.name} className="mt-[2.2rem]">
               {item.name === 'career' || item.name === 'language' ? (
-                <select
-                  disabled={index >= 1}
-                  id={`input-${item.name}`}
-                  {...register(item.name)}
-                  aria-invalid={errors[item.name] ? 'true' : 'false'}
-                  className="h-[3rem] w-full border-b border-[#54BBFF] outline-none disabled:bg-transparent disabled:text-[#838383]"
-                >
-                  <option value="" disabled>
-                    {item.name} 선택
-                  </option>
-                  {item.options.map((e) => (
-                    <option value={e} key={e}>
-                      {e}
+                <>
+                  <select
+                    disabled={index >= 1}
+                    id={`input-${item.name}`}
+                    {...register(item.name, item.validation)}
+                    aria-invalid={errors[item.name] ? 'true' : 'false'}
+                    className="h-[3rem] w-full border-b border-[#54BBFF] outline-none disabled:bg-transparent disabled:text-[#838383]"
+                  >
+                    <option value="" disabled selected className="p-1">
+                      {item.label}
                     </option>
-                  ))}
-                </select>
+                    {item.options.map((e) => (
+                      <option value={e} key={e} className="p-1">
+                        {e}
+                      </option>
+                    ))}
+                  </select>
+                  {errors[item.name] && <p>{errors[item.name]?.message}</p>}
+                </>
               ) : (
-                <input
-                  id={`input-${item.name}`}
-                  disabled={index >= 1}
-                  {...register(item.name, item.validation)}
-                  aria-invalid={errors[item.name] ? 'true' : 'false'}
-                  className="h-[3rem] w-full border-b border-[#54BBFF] outline-none disabled:bg-transparent disabled:text-[#838383]"
-                  placeholder={item.name}
-                />
+                <>
+                  {/* TODO: fix:자동완성 시 배경이 바뀜 */}
+                  <input
+                    id={`input-${item.name}`}
+                    disabled={index >= 1}
+                    {...register(item.name, item.validation)}
+                    aria-invalid={errors[item.name] ? 'true' : 'false'}
+                    className="h-[3rem] w-full border-b border-[#54BBFF] outline-none focus:caret-[#54BBFF] disabled:bg-transparent disabled:text-[#838383]"
+                    placeholder={item.label}
+                  />
+                  <Spacing size={0.2} />
+                  {errors[item.name] && (
+                    <p className="text-xs text-[#FF7A7A]">{errors[item.name]?.message}</p>
+                  )}
+                </>
               )}
             </div>
           ))}
         </form>
       )}
-
-      <button
-        className={`h-[3rem] w-[100%] rounded-xl text-center text-white ${
-          isValid ? 'bg-[#1A8CFF]' : 'bg-gray-400 cursor-not-allowed bg-[#1A8CFF]'
-        }`}
+   <Button
+        buttonLabel={isLoading ? '처리 중...' : buttonText}
         onClick={handleNextClick}
         disabled={!isValid || isLoading}
         aria-busy={isLoading}
-      >
-        {isLoading ? '처리 중...' : buttonText}
-      </button>
+        style={{
+          backgroundColor: !isValid ? '#1A8CFF' : '#B5B5B5',
+        }}
+      />
     </div>
   );
 };
