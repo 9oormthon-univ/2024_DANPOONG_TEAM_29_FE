@@ -4,7 +4,7 @@ const postDummy = [
   {
     authorInfo: {
       authorId: 1,
-      authorNickName: 'admin',
+      authorNickName: 'first',
       authorProfileImageUrl: 'img',
     },
     createdAt: '2024-11-21 15:46:57',
@@ -65,75 +65,11 @@ const postDummy = [
   {
     authorInfo: {
       authorId: 1,
-      authorNickName: 'admin',
+      authorNickName: 'last',
       authorProfileImageUrl: 'img',
     },
     createdAt: '2024-11-21 15:46:57',
     postId: 11,
-    title: '제목1',
-    content:
-      '안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 ',
-    likeCount: 1,
-    isLike: true,
-    tags: ['ANGRY', 'HAPPY'],
-    postImageUrl: 'img',
-  },
-  {
-    authorInfo: {
-      authorId: 1,
-      authorNickName: 'admin',
-      authorProfileImageUrl: 'img',
-    },
-    createdAt: '2024-11-21 15:46:57',
-    postId: 21,
-    title: '제목1',
-    content:
-      '안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 ',
-    likeCount: 1,
-    isLike: true,
-    tags: ['ANGRY', 'HAPPY'],
-    postImageUrl: 'img',
-  },
-  {
-    authorInfo: {
-      authorId: 1,
-      authorNickName: 'admin',
-      authorProfileImageUrl: 'img',
-    },
-    createdAt: '2024-11-21 15:46:57',
-    postId: 31,
-    title: '제목1',
-    content:
-      '안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 ',
-    likeCount: 1,
-    isLike: true,
-    tags: ['ANGRY', 'HAPPY'],
-    postImageUrl: 'img',
-  },
-  {
-    authorInfo: {
-      authorId: 1,
-      authorNickName: 'admin',
-      authorProfileImageUrl: 'img',
-    },
-    createdAt: '2024-11-21 15:46:57',
-    postId: 41,
-    title: '제목1',
-    content:
-      '안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 ',
-    likeCount: 1,
-    isLike: true,
-    tags: ['ANGRY', 'HAPPY'],
-    postImageUrl: 'img',
-  },
-  {
-    authorInfo: {
-      authorId: 1,
-      authorNickName: 'admin',
-      authorProfileImageUrl: 'img',
-    },
-    createdAt: '2024-11-21 15:46:57',
-    postId: 51,
     title: '제목1',
     content:
       '안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 안녕하세요. 저는 한국에 온 지 1년이 된 외국인 노동자입니다. 최근 몇 달 동안 일한 임금이 제대로 지급되지 않아 정말 막막한 상황입니다. 매번 월급날이 지나고 나면 ‘이번 주에는 줄게’라는 약속 ',
