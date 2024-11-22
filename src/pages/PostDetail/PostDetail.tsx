@@ -5,6 +5,7 @@ import CommentIcon from '../../assets/comment.svg?react';
 import EmptyLike from '../../assets/emptyLike.svg';
 import FillLike from '../../assets/fillLike.svg?react';
 import FollowIcon from '../../assets/follow.svg?react';
+import SendCommentIcon from '../../assets/sendComment.svg?react';
 import Spacing from '../../components/Spacing';
 import { TagItem } from '../../components/tag/TagItem';
 import { useGetPostDetail } from '../../hooks/queries/feed.query';
@@ -68,12 +69,14 @@ export const PostDetail = () => {
       </div>
       <hr className="my-4 border border-[#54BBFF]" />
       <p className="text-lg leading-7">댓글</p>
-      <div className="mb-7 mt-4 flex gap-3">
+      <div className="mb-7 mt-4 flex items-center gap-3">
         <CommentIcon />
         <input
           placeholder={`${authorInfo.authorNickName}님의 글에 댓글 달기`}
-          className="grow text-xs"
+          className="grow rounded-[10px] border border-light-gray px-3 py-2 text-xs focus:border-[#228CFF] focus:outline-none"
         />
+        {/* TODO: 댓글 추가 API 연결 */}
+        <SendCommentIcon />
       </div>
       <div className="flex flex-col gap-7">
         {data.commentResponseList.map(
