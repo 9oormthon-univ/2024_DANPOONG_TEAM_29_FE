@@ -7,7 +7,9 @@ interface SpacingProps {
   size: number;
   className?: string;
 }
-
+/**size 
+ * direction: horizontal | vertical 
+ * className */
 export default memo(function Spacing({
   size,
   direction = 'vertical',
