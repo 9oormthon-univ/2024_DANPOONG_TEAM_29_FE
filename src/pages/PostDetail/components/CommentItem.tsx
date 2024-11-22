@@ -1,4 +1,5 @@
 import Spacing from '../../../components/Spacing';
+import { formatTimeToAbsoluteOrRelative } from '../../../utils/formatTime';
 
 interface CommentItemProps {
   profileImageUrl: string;
@@ -20,7 +21,7 @@ export const CommentItem = ({
       <div>
         <div className="flex gap-2 leading-5">
           <p className="grow text-xs font-medium">{nickname}</p>
-          <p className="grow text-xs text-[#939393]">{createdAt}</p>
+          <p className="grow text-xs text-[#939393]">{formatTimeToAbsoluteOrRelative(createdAt)}</p>
         </div>
         <p className="grow text-xs">{content}</p>
       </div>
