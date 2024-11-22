@@ -5,6 +5,7 @@ import BookImg from '../../assets/book.png';
 import EarthImg from '../../assets/earth.png';
 import LikeImg from '../../assets/like.png';
 import LogoImg from '../../assets/logo.png';
+import TextLogoImg from '../../assets/textLogo.png';
 import { PetitionItem } from '../../components/petition/PetitionItem';
 import Spacing from '../../components/Spacing';
 
@@ -14,8 +15,8 @@ export const Home = () => {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex h-[60px] items-center justify-between">
-        <img src={LogoImg} />
-        <p className="text-lg font-bold">GlobalNest</p>
+        <img src={LogoImg} alt="graphic logo" />
+        <img src={TextLogoImg} alt="text logo" />
         {/* TODO: 전역 상태 가져와서 유저 이미지로 수정 */}
         <img src={LogoImg} className="h-8 w-8" />
       </div>
