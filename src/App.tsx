@@ -21,6 +21,9 @@ import { PetitionLayout } from './pages/Petition/PetitionLayout';
 import { PostDetail } from './pages/PostDetail/PostDetail';
 import { PostForm } from './pages/PostForm/PostForm';
 import { queryClient } from './services/TanstackQueryStore';
+
+import '@/utils/i18n';
+
 const router = createBrowserRouter([
   {
     path: '/',
