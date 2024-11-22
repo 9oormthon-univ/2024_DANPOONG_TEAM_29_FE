@@ -45,7 +45,7 @@ export const PostForm = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <TopBarControl title="청원 내용을 입력해주세요" size={14}>
+      <TopBarControl title="이야기를 작성해보세요" size={14}>
         <span className="inline-flex items-center">
           <img src={PencilIcon} alt="pencil" className="h-[24px] w-[24px]" />
         </span>
