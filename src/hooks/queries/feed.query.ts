@@ -1,9 +1,9 @@
 import { useSuspenseQuery, InfiniteData, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import { getPostDetail, getPostList, getRecommendUsers } from '../../api/feed.api';
-import { RecommendUserOption } from '../../type/feedOption';
-import { FilterType } from '../../type/filterType';
-import { PostDetailType, PostItemType } from '../../type/postType';
+import { RecommendUserOption } from '../../types/feedOption';
+import { FilterType } from '../../types/filterType';
+import { PostDetailType, PostItemType } from '../../types/postType';
 
 const POST_PER_PAGE = 5;
 

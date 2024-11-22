@@ -1,4 +1,4 @@
-import { FilterType } from '../../../type/filterType';
+import { FilterType } from '../../../types/filterType';
 import { translatePart } from '../../../utils/translatePart';
 
 export const EmptyFeed = ({ sortType }: { sortType: FilterType }) => {

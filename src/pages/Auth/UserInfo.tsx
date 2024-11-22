@@ -7,7 +7,7 @@ import PrevClickIcon from '@/assets/prevClick.svg?react';
 import { Button } from '@/components/Button';
 import Spacing from '@/components/Spacing';
 import { useInfoStore } from '@/store/useInfoStore';
-import { UserItem } from '@/types/userInfoType';
+// import { UserItem } from '@/types/userInfoType';
 
 import { AuthMainTitle } from './components/AuthMainTitle';
 
@@ -129,14 +129,14 @@ const areaName = [
 
 export const UserInfo = () => {
   const [titleNum, setTitleNum] = useState(0);
-  const { setUserList, userList } = useInfoStore();
-  const [isLoading, setIsLoading] = useState(false);
-  const onSubmit = (data: UserItem[]) => {
-    setUserList(data);
-  };
+  const { userList } = useInfoStore();
+  const isLoading = false; // const [isLoading, setIsLoading] = useState(false);
+  // const onSubmit = (data: UserItem[]) => {
+  //   setUserList(data);
+  // };
   const {
     register,
-    handleSubmit,
+    // handleSubmit,
     formState: { errors, isValid },
   } = useForm<IFormInput>({
     mode: 'onChange',
@@ -150,7 +150,7 @@ export const UserInfo = () => {
 
   const handleNextClick = () => {
     if (titleNum === 4) {
-      handleSubmit(onSubmit)();
+      // handleSubmit(onSubmit)();
       setTitleNum((num) => Math.min(num + 1, titleList.length - 1));
     } else if (titleNum === 5) {
       navigate('/auth');

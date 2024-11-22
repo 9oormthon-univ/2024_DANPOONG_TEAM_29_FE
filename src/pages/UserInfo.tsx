@@ -1,7 +1,7 @@
 import { useState } from 'react';
 
 import { useInfoStore } from '../store/useInfoStore';
-import { UserInfoType } from '../type/userInfoType';
+import { UserInfoType } from '../types/userInfoType';
 /** 바꾸어야 할 부분의 코드*/
 const titleList = [
   '사용하시는 언어가 무엇인가요?',

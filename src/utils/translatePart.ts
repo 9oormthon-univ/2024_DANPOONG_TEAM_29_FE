@@ -1,4 +1,4 @@
-import { FilterType } from '../type/filterType';
+import { FilterType } from '../types/filterType';
 
 type Part = Exclude<FilterType, 'LIKE_DESC' | 'CREATED_AT_DESC'>;
 type PartKorean =
