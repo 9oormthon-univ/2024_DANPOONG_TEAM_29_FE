@@ -1,5 +1,5 @@
-import { FilterType } from '../../../types/filterType';
-import { translatePart } from '../../../utils/translatePart';
+import { FilterType } from '@/types/filterType';
+import { translatePart } from '@/utils/translatePart';
 
 export const EmptyFeed = ({ sortType }: { sortType: FilterType }) => {
   if (sortType == 'LIKE_DESC' || sortType == 'CREATED_AT_DESC') return;

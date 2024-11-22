@@ -4,13 +4,13 @@ import CommentIcon from '@/assets/comment.svg?react';
 import EmptyLike from '@/assets/emptyLike.svg';
 import FillLike from '@/assets/fillLike.svg?react';
 import FollowIcon from '@/assets/follow.svg?react';
+import SendCommentIcon from '@/assets/sendComment.svg?react';
 import Spacing from '@/components/Spacing';
 import { TagItem } from '@/components/tag/TagItem';
+import { useGetPostDetail } from '@/hooks/queries/feed.query';
 import { formatDateTime } from '@/utils/formatTime';
 
 import { CommentItem } from './components/CommentItem';
-import SendCommentIcon from '../../assets/sendComment.svg?react';
-import { useGetPostDetail } from '../../hooks/queries/feed.query';
 
 interface PostDetail {
   authorInfo: {
