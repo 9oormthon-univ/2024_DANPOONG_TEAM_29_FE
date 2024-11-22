@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 
-import { TagItem } from './TagItem';
+import { TagItem } from '../../../components/tag/TagItem';
 import EmptyLike from '../../../assets/emptyLike.svg?react';
 import FillLike from '../../../assets/fillLike.svg?react';
 

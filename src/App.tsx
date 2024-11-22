@@ -11,7 +11,7 @@ import { NotFound } from './pages/NotFound';
 import { PetitionDetail } from './pages/PetitionDetail';
 import { PetitionFeed } from './pages/PetitionFeed';
 import { PetitionForm } from './pages/PetitionForm';
-import { PostDetail } from './pages/PostDetail';
+import { PostDetail } from './pages/PostDetail/PostDetail';
 import { PostForm } from './pages/PostForm/PostForm';
 import { SignUpForm } from './pages/SignUpForm';
 import { UserInfo } from './pages/UserInfo';
