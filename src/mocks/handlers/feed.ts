@@ -1,12 +1,5 @@
 import { http, HttpResponse } from 'msw';
 
-interface User {
-  userId: number;
-  nickName: string;
-  profileImageUrl: string;
-  part: string;
-}
-
 const postDummy = [
   {
     authorInfo: {
@@ -151,7 +144,7 @@ const postDummy = [
   },
 ];
 
-const recommendUserDummy: User[] = [
+const recommendUserDummy = [
   { userId: 1, nickName: 'n1', profileImageUrl: 'img', part: '건설업' },
   { userId: 2, nickName: 'n2', profileImageUrl: 'img', part: '서비스업' },
   { userId: 3, nickName: 'n3', profileImageUrl: 'img', part: '건설업' },
