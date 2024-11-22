@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
+import DeleteIcon from '@/assets/delete.svg?react';
+import { Button } from '@/components/Button';
+import { Input } from '@/components/Input';
+import Spacing from '@/components/Spacing';
+
 import { ActionBar } from './components/ActionBar';
-import DeleteIcon from '../../assets/delete.svg?react';
-import { Button } from '../../components/Button';
-import { Input } from '../../components/Input';
-import Spacing from '../../components/Spacing';
 
 interface FormData {
   title: string;
