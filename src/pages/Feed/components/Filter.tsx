@@ -2,18 +2,18 @@ import { useEffect, useState } from 'react';
 
 import { useSearchParams } from 'react-router-dom';
 
-import FilterIcon from '@/assets/filter.svg?react';
-import AgricultureIcon from '@/assets/filter_agriculture.svg?react';
-import ConstructionIcon from '@/assets/filter_construction.svg?react';
-import FisheriesIcon from '@/assets/filter_fisheries.svg?react';
-import HousecareIcon from '@/assets/filter_housecare.svg?react';
-import LikeDescIcon from '@/assets/filter_like.svg?react';
-import LogisticsIcon from '@/assets/filter_logistics.svg?react';
-import ManufacturingIcon from '@/assets/filter_manufacturing.svg?react';
-import ProfessionalIcon from '@/assets/filter_professional.svg?react';
-import ServiceIcon from '@/assets/filter_service.svg?react';
-import CreatedAtDescIcon from '@/assets/filter_time.svg?react';
-import FilterCloseIcon from '@/assets/filterClose.svg?react';
+import FilterIcon from '@/assets/feed/filter.svg?react';
+import AgricultureIcon from '@/assets/feed/filter_agriculture.svg?react';
+import ConstructionIcon from '@/assets/feed/filter_construction.svg?react';
+import FisheriesIcon from '@/assets/feed/filter_fisheries.svg?react';
+import HousecareIcon from '@/assets/feed/filter_housecare.svg?react';
+import LikeDescIcon from '@/assets/feed/filter_like.svg?react';
+import LogisticsIcon from '@/assets/feed/filter_logistics.svg?react';
+import ManufacturingIcon from '@/assets/feed/filter_manufacturing.svg?react';
+import ProfessionalIcon from '@/assets/feed/filter_professional.svg?react';
+import ServiceIcon from '@/assets/feed/filter_service.svg?react';
+import CreatedAtDescIcon from '@/assets/feed/filter_time.svg?react';
+import FilterCloseIcon from '@/assets/feed/filterClose.svg?react';
 import { FilterType } from '@/types/filterType';
 
 const FILTER_TYPE: { filter: FilterType; icon: React.ReactNode }[] = [

@@ -13,3 +13,17 @@ export interface PostItemType {
   tags: string[];
   postImageUrl: string;
 }
+
+interface CommentItemType {
+  userId: number;
+  profileImageUrl: string;
+  nickname: string;
+  commentId: number;
+  content: string;
+  createdAt: string;
+}
+
+export interface PostDetailType {
+  postResponse: PostItemType;
+  commentResponseList: CommentItemType[];
+}
