@@ -1,4 +1,7 @@
+import { Suspense } from 'react';
+
 import { QueryClientProvider } from '@tanstack/react-query';
+import { ErrorBoundary } from 'react-error-boundary';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { LayoutWithNavigation } from './components/layout/LayoutWithNavigation';
@@ -74,7 +77,15 @@ const router = createBrowserRouter([
 const App = () => {
   return (
     <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
+      <ErrorBoundary
+        fallbackRender={() => {
+          return <div>fallback</div>;
+        }}
+      >
+        <Suspense fallback={<div>loading</div>}>
+          <RouterProvider router={router} />
+        </Suspense>
+      </ErrorBoundary>
     </QueryClientProvider>
   );
 };

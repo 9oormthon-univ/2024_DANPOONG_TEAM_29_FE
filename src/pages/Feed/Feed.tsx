@@ -1,38 +1,43 @@
-import { useEffect, useState } from 'react';
+import { useSearchParams } from 'react-router-dom';
 
+import { EmptyFeed } from './components/EmptyFeed';
 import { Filter } from './components/Filter';
 import { PostItem } from './components/PostItem';
 import { RecommendUser } from './components/RecommendUser';
 import Spacing from '../../components/Spacing';
+import { useGetPostList, useGetRecommendUsers } from '../../hooks/queries/feed.query';
+import { useScrollObserve } from '../../hooks/useScrollObserve';
+import { FilterType } from '../../type/filterType';
+import { PostItemType } from '../../type/postType';
 
 export const Feed = () => {
-  // TODO: 서버 스키마와 동일한 타입 생성
-  const [recommendUsers, setRecommendUsers] = useState<any[]>([]);
-  const [postList, setPostList] = useState<any[]>([]);
+  const [searchParams] = useSearchParams();
+  const currentSortType = (searchParams.get('sortType') || 'CREATED_AT_DESC') as FilterType;
 
-  useEffect(() => {
-    // TODO: api 함수로 분리
-    const fetchPostList = async () => {
-      const response = await fetch('http://localhost:5173/posts');
-      const data = await response.json();
-      setPostList(data);
-    };
-    const fetchRecommendUsers = async () => {
-      const response = await fetch('http://localhost:5173/users/recommend');
-      const data = await response.json();
-      setRecommendUsers(data);
-    };
+  const { data: postList, isPending, fetchNextPage, hasNextPage } = useGetPostList(currentSortType);
+  const { data: recommendUsers } = useGetRecommendUsers({});
 
-    fetchPostList();
-    fetchRecommendUsers();
-  }, []);
+  const allPostCount = (postList ? postList.pages.flat() : []).length;
+
+  const { lastElementRef } = useScrollObserve<PostItemType[]>({
+    isPending,
+    fetchNextPage,
+    hasNextPage,
+  });
 
   return (
     <div>
       <Filter />
-      {postList.map((post) => (
-        <PostItem key={post.postId} {...post} />
-      ))}
+      {allPostCount === 0 ? (
+        <EmptyFeed sortType={currentSortType} />
+      ) : (
+        <div>
+          {postList.pages.flatMap((page) =>
+            page.map((post) => <PostItem key={post.postId} {...post} />),
+          )}
+          <div ref={lastElementRef} />
+        </div>
+      )}
       <Spacing size={1.25} />
       <RecommendUser userList={recommendUsers} />
     </div>
