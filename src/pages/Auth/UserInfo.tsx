@@ -230,13 +230,13 @@ export const UserInfo = () => {
           ))}
         </form>
       )}
-   <Button
+      <Button
         buttonLabel={isLoading ? '처리 중...' : buttonText}
         onClick={handleNextClick}
         disabled={!isValid || isLoading}
         aria-busy={isLoading}
         style={{
-          backgroundColor: !isValid ? '#1A8CFF' : '#B5B5B5',
+          backgroundColor: isValid ? '#1A8CFF' : '#B5B5B5',
         }}
       />
     </div>

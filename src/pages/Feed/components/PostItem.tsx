@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import EmptyLike from '@/assets/emptyLike.svg?react';
 import FillLike from '@/assets/fillLike.svg?react';
 import { TagItem } from '@/components/tag/TagItem';
+import { formatTimeToAbsoluteOrRelative } from '@/utils/formatTime';
 
 interface PostItemProps {
   authorInfo: {

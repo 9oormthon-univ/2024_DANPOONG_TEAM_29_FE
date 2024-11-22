@@ -1,5 +1,12 @@
-import Spacing from '@/components/Spacing';
+import { useSearchParams } from 'react-router-dom';
 
+import Spacing from '@/components/Spacing';
+import { useGetPostList, useGetRecommendUsers } from '@/hooks/queries/feed.query';
+import { useScrollObserve } from '@/hooks/useScrollObserve';
+import { FilterType } from '@/types/filterType';
+import { PostItemType } from '@/types/postType';
+
+import { EmptyFeed } from './components/EmptyFeed';
 import { Filter } from './components/Filter';
 import { PostItem } from './components/PostItem';
 import { RecommendUser } from './components/RecommendUser';

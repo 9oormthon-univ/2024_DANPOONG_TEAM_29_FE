@@ -6,6 +6,7 @@ import FillLike from '@/assets/fillLike.svg?react';
 import FollowIcon from '@/assets/follow.svg?react';
 import Spacing from '@/components/Spacing';
 import { TagItem } from '@/components/tag/TagItem';
+import { formatDateTime } from '@/utils/formatTime';
 
 import { CommentItem } from './components/CommentItem';
 

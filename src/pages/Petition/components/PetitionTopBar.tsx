@@ -6,7 +6,7 @@ interface TopBarControlProps {
   handlePrevClick: () => void;
 }
 
-export const PetitionTopbar = ({ handlePrevClick }: TopBarControlProps) => {
+export const PetitionTopBar = ({ handlePrevClick }: TopBarControlProps) => {
   return (
     <div className="flex-row">
       <TopBarControl handlePrevClick={handlePrevClick} title="청원" size={3} />

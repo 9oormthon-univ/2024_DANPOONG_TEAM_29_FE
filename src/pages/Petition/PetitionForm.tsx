@@ -100,9 +100,9 @@ export const PetitionForm = () => {
         <span className="text-base font-bold">분야</span>
         <Spacing size={0.75} />
         <select
-          className="h-9 w-full rounded-[10px] border border-light-gray px-3 py-2 outline-none focus:ring-1 focus:ring-[#228CFF]"
-          value={formData.category} // 상태에 따라 선택된 값을 설정
-          onChange={handleCategoryChange} // 선택값 변경 시 상태 업데이트
+          className="h-9 w-full rounded-[10px] border border-light-gray px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#228CFF]"
+          value={formData.category} 
+          onChange={handleCategoryChange} 
         >
           <option value="" disabled>
             선택해주세요

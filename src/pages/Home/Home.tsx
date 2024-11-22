@@ -4,6 +4,7 @@ import BookImg from '@/assets/book.png';
 import EarthImg from '@/assets/earth.png';
 import LikeImg from '@/assets/like.png';
 import LogoImg from '@/assets/logo.png';
+import TextLogoImg from '@/assets/textLogo.png';
 import { PetitionItem } from '@/components/petition/PetitionItem';
 import Spacing from '@/components/Spacing';
 
