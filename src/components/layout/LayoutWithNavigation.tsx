@@ -1,8 +1,8 @@
 import { Outlet, useNavigate } from 'react-router-dom';
 
-import HomeIcon from '../../assets/home.svg?react';
-import WritePetitionIcon from '../../assets/writePetition.svg?react';
-import WriteStoryIcon from '../../assets/writeStory.svg?react';
+import HomeIcon from '@/assets/home.svg?react';
+import WritePetitionIcon from '@/assets/petition/writePetition.svg?react';
+import WriteStoryIcon from '@/assets/writeStory.svg?react';
 
 export const LayoutWithNavigation = () => {
   return (

@@ -1,4 +1,4 @@
-import RightIcon from '../../../assets/right.svg?react';
+import RightIcon from '@/assets/right.svg?react';
 
 export const Panel = ({
   children,

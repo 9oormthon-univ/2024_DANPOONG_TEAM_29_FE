@@ -1,13 +1,14 @@
 // import { useParams } from 'react-router-dom';
 
+import CommentIcon from '@/assets/comment.svg?react';
+import EmptyLike from '@/assets/emptyLike.svg';
+import FillLike from '@/assets/fillLike.svg?react';
+import FollowIcon from '@/assets/follow.svg?react';
+import Spacing from '@/components/Spacing';
+import { TagItem } from '@/components/tag/TagItem';
+import { formatDateTime } from '@/utils/formatTime';
+
 import { CommentItem } from './components/CommentItem';
-import CommentIcon from '../../assets/comment.svg?react';
-import EmptyLike from '../../assets/emptyLike.svg';
-import FillLike from '../../assets/fillLike.svg?react';
-import FollowIcon from '../../assets/follow.svg?react';
-import Spacing from '../../components/Spacing';
-import { TagItem } from '../../components/tag/TagItem';
-import { formatDateTime } from '../../utils/formatTime';
 
 const PostDummy = {
   hasNext: false,
