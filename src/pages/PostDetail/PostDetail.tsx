@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+// import { useParams } from 'react-router-dom';
 
 import { CommentItem } from './components/CommentItem';
 import CommentIcon from '../../assets/comment.svg?react';
@@ -84,7 +84,7 @@ interface PostDetail {
 
 export const PostDetail = () => {
   // TODO: postId 사용해서 서버 연결
-  const { postId } = useParams();
+  // const { postId } = useParams();
 
   const { authorInfo, createdAt, title, content, likeCount, isLike, tags, postImageUrl } =
     PostDummy.postResponse;

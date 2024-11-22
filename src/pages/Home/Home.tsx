@@ -5,6 +5,7 @@ import BookImg from '../../assets/book.png';
 import EarthImg from '../../assets/earth.png';
 import LikeImg from '../../assets/like.png';
 import LogoImg from '../../assets/logo.png';
+import TextLogoImg from '../../assets/textLogo.png';
 import { PetitionItem } from '../../components/petition/PetitionItem';
 import Spacing from '../../components/Spacing';
 
@@ -14,8 +15,8 @@ export const Home = () => {
   return (
     <div className="flex flex-col gap-5">
       <div className="flex h-[60px] items-center justify-between">
-        <img src={LogoImg} />
-        <p className="text-lg font-bold">GlobalNest</p>
+        <img src={LogoImg} alt="graphic logo" />
+        <img src={TextLogoImg} alt="text logo" />
         {/* TODO: 전역 상태 가져와서 유저 이미지로 수정 */}
         <img src={LogoImg} className="h-8 w-8" />
       </div>
@@ -30,8 +31,7 @@ export const Home = () => {
 
       <div className="flex flex-col gap-2">
         <p className="text-xl font-bold">인기 이야기</p>
-        {/* TODO: 공감순으로 볼 수 있게 url 파라미터 추가 */}
-        <Panel onClick={() => navigate('/feed')}>
+        <Panel onClick={() => navigate('feed?sortType=LIKE_DESC')}>
           <img src={LikeImg} />
           <Spacing direction="horizontal" size={0.5} />
           <div>
@@ -60,13 +60,13 @@ export const Home = () => {
 
       <div className="flex flex-col gap-2">
         <p className="text-xl font-bold">사용자 추천</p>
-        {/* TODO: 링크 수정 */}
-        <Panel onClick={() => navigate('/')}>
+        {/* TODO: 전역 상태 가져와서 유저 직종으로 수정 */}
+        <Panel onClick={() => navigate(`feed?sortType=${'CREATED_AT_DESC'}`)}>
           <img src={BookImg} />
           <Spacing direction="horizontal" size={0.5} />
           <div>
-            <p className="text-xs leading-6">내가 쓴 글의 태그와 비슷한</p>
-            <p className="text-sm font-bold">다른 사람들의 이야기 보러가기</p>
+            <p className="text-xs leading-6">나와 비슷한 직종의</p>
+            <p className="text-sm font-bold">사람들의 이야기 보러가기</p>
           </div>
         </Panel>
       </div>

@@ -15,8 +15,8 @@ const titleList = [
 export const UserInfo = () => {
   const [titleNum, setTitleNum] = useState(0);
   const { userList, updateUser } = useInfoStore();
-  const [isLoading, setIsLoading] = useState(false);
-  const [isValid, setIsValid] = useState(true);
+  const isLoading = false; // const [isLoading, setIsLoading] = useState(false);
+  const isValid = true; // const [isValid, setIsValid] = useState(true);
   const TOTAL_QUESTIONS = 5;
   const startIndex = Math.max(TOTAL_QUESTIONS - titleNum - 1, 0);
   const curList = [...userList.slice(startIndex, TOTAL_QUESTIONS)];
@@ -72,7 +72,7 @@ export const UserInfo = () => {
           ))}
       </div>
       <button
-        className={`bottom-[5rem] h-[3rem] w-[100%] rounded-xl text-center text-white ${isValid ? 'bg-[#1A8CFF]' : 'cursor-not-allowed bg-gray-400'}`}
+        className={`bottom-[5rem] h-[3rem] w-[100%] rounded-xl text-center text-white ${isValid ? 'bg-[#1A8CFF]' : 'bg-gray-400 cursor-not-allowed'}`}
         onClick={handleNextClick}
         disabled={!isValid || isLoading}
         aria-busy={isLoading}
