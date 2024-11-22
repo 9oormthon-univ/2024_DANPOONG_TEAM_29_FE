@@ -1,5 +1,5 @@
-import Spacing from '../../../components/Spacing';
-import { formatTimeToAbsoluteOrRelative } from '../../../utils/formatTime';
+import Spacing from '@/components/Spacing';
+import { formatTimeToAbsoluteOrRelative } from '@/utils/formatTime';
 
 interface CommentItemProps {
   profileImageUrl: string;

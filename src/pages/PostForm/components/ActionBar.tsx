@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react';
 
+import ImgIcon from '@/assets/img.svg?react';
+import TagIcon from '@/assets/tag.svg?react';
+
 import { TagBottomSheet } from './TagBottomSheet';
 import { TagItem } from './TagItem';
-import ImgIcon from '../../../assets/img.svg?react';
-import TagIcon from '../../../assets/tag.svg?react';
 
 interface ActionBarProps {
   tagList: string[];

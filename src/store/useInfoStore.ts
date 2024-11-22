@@ -1,10 +1,6 @@
 import { create } from 'zustand';
 
-import { UserInfoType } from '../type/userInfoType';
-interface UserItem {
-  type: UserInfoType;
-  value: string;
-}
+import { UserItem } from '../types/userInfoType';
 
 interface UserStore {
   userList: UserItem[];
