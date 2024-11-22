@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import BookImg from '@/assets/home/book.png';
@@ -11,6 +12,7 @@ import Spacing from '@/components/Spacing';
 import { Panel } from './components/Panel';
 
 export const Home = () => {
+  const { t } = useTranslation('home');
   const navigate = useNavigate();
 
   return (
@@ -25,25 +27,25 @@ export const Home = () => {
         <div className="absolute bottom-0 left-0">
           {/* TODO: 전역 상태 가져와서 유저 네임으로 수정 */}
           <p className="text-xs"> Nickname님 반가워요! </p>
-          <p className="text-base font-bold"> 새로운 소식이 있나요?</p>
+          <p className="text-base font-bold">{t('0')}</p>
         </div>
         <img src={EarthImg} className="h-auto w-[250px]" />
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-xl font-bold">인기 이야기</p>
+        <p className="text-xl font-bold">{t('1')}</p>
         <Panel onClick={() => navigate('feed?sortType=LIKE_DESC')}>
           <img src={LikeImg} />
           <Spacing direction="horizontal" size={0.5} />
           <div>
-            <p className="text-xs leading-6">많은 사람들의 공감을 얻은</p>
-            <p className="text-sm font-bold">인기 이야기 보러가기</p>
+            <p className="text-xs leading-6">{t('2')}</p>
+            <p className="text-sm font-bold">{t('3')}</p>
           </div>
         </Panel>
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-xl font-bold">청원</p>
+        <p className="text-xl font-bold">{t('4')}</p>
         <div className="grid grid-cols-2 gap-3">
           {/* TODO: 서버 데이터로 교체 */}
           {[1, 2, 3, 4].map((n) => (
@@ -60,14 +62,14 @@ export const Home = () => {
       </div>
 
       <div className="flex flex-col gap-2">
-        <p className="text-xl font-bold">사용자 추천</p>
+        <p className="text-xl font-bold">{t('5')}</p>
         {/* TODO: 전역 상태 가져와서 유저 직종으로 수정 */}
         <Panel onClick={() => navigate(`feed?sortType=${'CREATED_AT_DESC'}`)}>
           <img src={BookImg} />
           <Spacing direction="horizontal" size={0.5} />
           <div>
-            <p className="text-xs leading-6">나와 비슷한 직종의</p>
-            <p className="text-sm font-bold">사람들의 이야기 보러가기</p>
+            <p className="text-xs leading-6">{t('6')}</p>
+            <p className="text-sm font-bold">{t('7')}</p>
           </div>
         </Panel>
       </div>
