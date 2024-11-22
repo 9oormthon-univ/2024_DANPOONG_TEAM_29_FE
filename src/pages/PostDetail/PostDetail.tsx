@@ -7,6 +7,7 @@ import FillLike from '../../assets/fillLike.svg?react';
 import FollowIcon from '../../assets/follow.svg?react';
 import Spacing from '../../components/Spacing';
 import { TagItem } from '../../components/tag/TagItem';
+import { formatDateTime } from '../../utils/formatTime';
 
 const PostDummy = {
   hasNext: false,
@@ -103,7 +104,7 @@ export const PostDetail = () => {
         </div>
       </div>
       <p className="text-lg font-medium leading-7">{title}</p>
-      <p className="text-xs font-normal leading-5 text-[#939393]">{createdAt}</p>
+      <p className="text-xs font-normal leading-5 text-[#939393]">{formatDateTime(createdAt)}</p>
       <Spacing size={1} />
       <p className="mb-[10px] whitespace-pre-line text-xs font-normal leading-5">{content}</p>
       {postImageUrl && (

@@ -1,8 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 
-import { TagItem } from '../../../components/tag/TagItem';
 import EmptyLike from '../../../assets/emptyLike.svg?react';
 import FillLike from '../../../assets/fillLike.svg?react';
+import { TagItem } from '../../../components/tag/TagItem';
+import { formatTimeToAbsoluteOrRelative } from '../../../utils/formatTime';
 
 interface PostItemProps {
   authorInfo: {
@@ -46,8 +47,7 @@ export const PostItem = ({
       <div className="grow">
         <div className="mb-[11px] flex gap-2 text-xs">
           <p className="font-medium">{authorInfo.authorNickName}</p>
-          {/* TODO: 현재 시각 기준으로 계산 */}
-          <p className="font-normal text-[#939393]">{createdAt}</p>
+          <p className="font-normal text-[#939393]">{formatTimeToAbsoluteOrRelative(createdAt)}</p>
         </div>
         <p className="mb-1 text-sm font-medium leading-5">{title}</p>
         <p className="mb-[10px] line-clamp-3 max-h-16 text-xs font-normal leading-5">{content}</p>
