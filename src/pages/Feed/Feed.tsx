@@ -1,5 +1,6 @@
 import { useSearchParams } from 'react-router-dom';
 
+import { EmptyFeed } from './components/EmptyFeed';
 import { Filter } from './components/Filter';
 import { PostItem } from './components/PostItem';
 import { RecommendUser } from './components/RecommendUser';
@@ -16,6 +17,8 @@ export const Feed = () => {
   const { data: postList, isPending, fetchNextPage, hasNextPage } = useGetPostList(currentSortType);
   const { data: recommendUsers } = useGetRecommendUsers({});
 
+  const allPostCount = (postList ? postList.pages.flat() : []).length;
+
   const { lastElementRef } = useScrollObserve<PostItemType[]>({
     isPending,
     fetchNextPage,
@@ -25,10 +28,16 @@ export const Feed = () => {
   return (
     <div>
       <Filter />
-      {postList.pages.flatMap((page) =>
-        page.map((post) => <PostItem key={post.postId} {...post} />),
+      {allPostCount === 0 ? (
+        <EmptyFeed sortType={currentSortType} />
+      ) : (
+        <div>
+          {postList.pages.flatMap((page) =>
+            page.map((post) => <PostItem key={post.postId} {...post} />),
+          )}
+          <div ref={lastElementRef} />
+        </div>
       )}
-      <div ref={lastElementRef} />
       <Spacing size={1.25} />
       <RecommendUser userList={recommendUsers} />
     </div>
