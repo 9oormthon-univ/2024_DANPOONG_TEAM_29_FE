@@ -1,7 +1,9 @@
-import { useRef, useState, forwardRef, useEffect } from 'react';
+import { useState, forwardRef, useEffect } from 'react';
 
 import { Button } from '@/components/Button';
 import Spacing from '@/components/Spacing';
+
+import { useCanvas } from '../../../hooks/useCanvas';
 
 interface PetitionModalProps {
   onClose: () => void;
@@ -12,65 +14,16 @@ interface PetitionModalProps {
 
 const PetitionModal = forwardRef<HTMLDialogElement, PetitionModalProps>(
   ({ onSubmit, name, title, onClose }: PetitionModalProps, ref) => {
-    const canvasRef = useRef<HTMLCanvasElement | null>(null);
-    const [isDrawing, setIsDrawing] = useState(false);
     const [render, setRender] = useState(true);
+    const { canvasRef, startDrawing, draw, stopDrawing, clearCanvas } = useCanvas(setRender);
 
-    const startDrawing = (e: React.MouseEvent | React.TouchEvent) => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-      setRender(false);
-      const rect = canvas.getBoundingClientRect();
-      const x = 'touches' in e ? e.touches[0].clientX - rect.left : e.clientX - rect.left;
-      const y = 'touches' in e ? e.touches[0].clientY - rect.top : e.clientY - rect.top;
-
-      ctx.beginPath();
-      ctx.moveTo(x, y);
-      setIsDrawing(true);
-    };
-
-    const draw = (e: React.MouseEvent | React.TouchEvent) => {
-      if (!isDrawing) return;
-
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-
-      const rect = canvas.getBoundingClientRect();
-      const x = 'touches' in e ? e.touches[0].clientX - rect.left : e.clientX - rect.left;
-      const y = 'touches' in e ? e.touches[0].clientY - rect.top : e.clientY - rect.top;
-
-      ctx.lineTo(x, y);
-      ctx.stroke();
-    };
-    const clearCanvas = () => {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-
-      const ctx = canvas.getContext('2d');
-      if (!ctx) return;
-
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-    };
-
-    const stopDrawing = () => {
-      if (!isDrawing) return;
-      setIsDrawing(false);
-    };
-
-    // 모달 외부 클릭 시 닫기 처리
     useEffect(() => {
       if (typeof ref === 'function') return;
       const dialog = ref!.current;
       if (dialog) {
         dialog.addEventListener('click', (e: MouseEvent) => {
           if (e.target === dialog) {
-            onClose(); // 모달 외부 클릭 시 닫기
+            onClose();
             clearCanvas();
             setRender(true);
           }
@@ -81,7 +34,7 @@ const PetitionModal = forwardRef<HTMLDialogElement, PetitionModalProps>(
           dialog.removeEventListener('click', onClose);
         }
       };
-    }, [ref, onClose]);
+    }, [ref, onClose, clearCanvas]);
 
     return (
       <dialog

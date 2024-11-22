@@ -45,7 +45,7 @@ export const PostForm = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <TopBarControl title="이야기를 작성해보세요" size={14}>
+      <TopBarControl title="이야기를 작성해보세요" size={12}>
         <span className="inline-flex items-center">
           <img src={PencilIcon} alt="pencil" className="h-[24px] w-[24px]" />
         </span>
@@ -61,14 +61,14 @@ export const PostForm = () => {
       <Spacing size={1.75} />
 
       <div className="mb-[9px] flex justify-between">
-        <span className="text-base">내용</span>
+        <span className="text-base font-bold">내용</span>
         <span>
           ({formData.description.length} / {500})
         </span>
       </div>
       <div className="flex min-h-[329px] flex-col justify-between rounded-[10px] border border-light-gray px-[11px] py-2">
         <textarea
-          className="h-[140px] w-full resize-none outline-none"
+          className="h-[140px] w-full resize-none outline-none focus:caret-[#54BBFF]"
           value={formData.description}
           onChange={(e) => updateField({ description: e.target.value })}
           placeholder="내용을 입력해주세요"
