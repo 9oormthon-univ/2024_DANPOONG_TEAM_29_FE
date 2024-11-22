@@ -1,11 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
-import BookImg from '@/assets/book.png';
-import EarthImg from '@/assets/earth.png';
-import LikeImg from '@/assets/like.png';
+import BookImg from '@/assets/home/book.png';
+import EarthImg from '@/assets/home/earth.png';
+import LikeImg from '@/assets/home/like.png';
+import TextLogoImg from '@/assets/home/textLogo.png';
 import LogoImg from '@/assets/logo.png';
-import TextLogoImg from '@/assets/textLogo.png';
 import { PetitionItem } from '@/components/petition/PetitionItem';
 import Spacing from '@/components/Spacing';
 

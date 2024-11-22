@@ -1,7 +1,9 @@
 import { useNavigate } from 'react-router-dom';
 
+import Spacing from '@/components/Spacing';
+
 import { AuthMainTitle } from './components/AuthMainTitle';
-import Spacing from '../../components/Spacing';
+
 const SUPPORTED_LANGUAGES = [
   '한국어',
   '중국어',
@@ -11,7 +13,9 @@ const SUPPORTED_LANGUAGES = [
   '인도네시아어',
   '싱할라어(스리라카)',
 ] as const;
+
 type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
+
 export const LanguageSelection = () => {
   const navigate = useNavigate();
 
@@ -47,4 +51,3 @@ export const LanguageSelection = () => {
     </div>
   );
 };
-

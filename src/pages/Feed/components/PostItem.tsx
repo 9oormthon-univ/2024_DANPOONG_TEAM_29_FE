@@ -36,7 +36,7 @@ export const PostItem = ({
 
   return (
     <div
-      className="flex gap-[10px] border-b-[1px] border-[#54BBFF] py-5"
+      className="flex cursor-pointer gap-[10px] border-b-[1px] border-[#54BBFF] py-5"
       onClick={() => navigate(`/post/${postId}`)}
     >
       <img

@@ -1,6 +1,6 @@
 import { create } from 'zustand';
 
-import { UserItem } from '../types/userInfoType';
+import { UserItem } from '@/types/userInfoType';
 
 interface UserStore {
   userList: UserItem[];
