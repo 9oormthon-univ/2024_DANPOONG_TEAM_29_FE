@@ -1,9 +1,11 @@
 import PrevClickIcon from '@/assets/prevClick.svg?react';
+
 interface TopBarProps {
   title: string;
   size: number;
   handlePrevClick: () => void;
 }
+
 export const TopBarControl = ({ title, size, handlePrevClick }: TopBarProps) => {
   return (
     <>
