@@ -8,12 +8,15 @@ import TextLogoImg from '@/assets/home/textLogo.png';
 import LogoImg from '@/assets/logo.png';
 import { PetitionItem } from '@/components/petition/PetitionItem';
 import Spacing from '@/components/Spacing';
+import { useGetPetitionList } from '@/hooks/queries/petition.query';
 
 import { Panel } from './components/Panel';
 
 export const Home = () => {
   const { t } = useTranslation('home');
   const navigate = useNavigate();
+
+  const { data: petitionList } = useGetPetitionList('');
 
   return (
     <div className="flex flex-col gap-5">
@@ -47,16 +50,11 @@ export const Home = () => {
       <div className="flex flex-col gap-2">
         <p className="text-xl font-bold">{t('4')}</p>
         <div className="grid grid-cols-2 gap-3">
-          {/* TODO: 서버 데이터로 교체 */}
-          {[1, 2, 3, 4].map((n) => (
+          {petitionList.pages[0].slice(0, 4).map((petition) => (
             <PetitionItem
-              key={n}
-              category="노동 환경 개선"
-              title="불공정한 임금 체불 문제 해결을 위한 노동자 보호 요청"
-              count={1000}
-              startDate="2024.11.14"
-              endDate="2024.11.29"
-              onClick={() => navigate('petition/1')}
+              key={petition.id}
+              {...petition}
+              onClick={() => navigate(`petition/${petition.id}`)}
             />
           ))}
         </div>

@@ -1,23 +1,18 @@
 import ClipBoardImg from '@/assets/clipboard.png';
 import PetitionIcon from '@/assets/petition/petition.svg?react';
+import { PetitionItemType } from '@/types/petitionType';
 import { formatNumber } from '@/utils/formatNumber';
 
-// TODO: 서버 스키마와 일치 시키기
-interface PetitionItemProps {
-  category: string;
-  title: string;
-  count: number;
-  startDate: string;
-  endDate: string;
+interface PetitionItemProps extends Omit<PetitionItemType, 'id'> {
   onClick: () => void;
 }
 
 export const PetitionItem = ({
-  category,
   title,
-  count,
-  startDate,
-  endDate,
+  petitionType,
+  agreementCount,
+  createdDate,
+  agreementDeadline,
   onClick,
 }: PetitionItemProps) => {
   return (
@@ -27,19 +22,19 @@ export const PetitionItem = ({
     >
       <div>
         <div className="flex items-center">
-          <p className="inline-block text-[10px] text-[#228CFF]">{category}</p>
+          <p className="inline-block text-[10px] text-[#228CFF]">{petitionType}</p>
           <img src={ClipBoardImg} className="h-[13px] w-[13px]" alt="petition icon" />
         </div>
-        <p className="font-bold">{title}</p>
+        <p className="text-left font-bold">{title}</p>
       </div>
 
       <div>
         <div className="mb-1 flex items-center">
           <PetitionIcon className="mr-[2px]" />
-          <p className="font-bold">{formatNumber(count)}명</p>
+          <p className="font-bold">{formatNumber(agreementCount)}명</p>
         </div>
         <p className="font-medium">
-          {startDate} ~ {endDate}
+          {createdDate} ~ {agreementDeadline}
         </p>
       </div>
     </button>
