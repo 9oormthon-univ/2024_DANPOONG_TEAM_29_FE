@@ -1,6 +1,6 @@
+export type SortType = 'CREATED_AT_DESC' | 'LIKE_DESC';
+
 export type FilterType =
-  | 'CREATED_AT_DESC'
-  | 'LIKE_DESC'
   | 'MANUFACTURING'
   | 'CONSTRUCTION'
   | 'LOGISTICS'

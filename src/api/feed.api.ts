@@ -2,8 +2,10 @@ import { PostListOption, RecommendUserOption } from '@/types/feedOption';
 
 import api from './index';
 
-export const getPostList = async ({ page, sortType }: PostListOption) => {
-  const { data } = await api.get(`/posts?page=${page}&size=${5}&sortType=${sortType}`);
+export const getPostList = async ({ page, sortType, part }: PostListOption) => {
+  const { data } = await api.get(
+    `/posts?page=${page}&size=${5}&sortType=${sortType}${part !== '' ? `&part=${part}` : ''}`,
+  );
   return data;
 };
 

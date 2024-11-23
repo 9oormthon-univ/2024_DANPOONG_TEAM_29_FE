@@ -2,12 +2,18 @@ import { useSuspenseQuery, InfiniteData, useSuspenseInfiniteQuery } from '@tanst
 
 import { getPostDetail, getPostList, getRecommendUsers } from '@/api/feed.api';
 import { RecommendUserOption } from '@/types/feedOption';
-import { FilterType } from '@/types/filterType';
+import { FilterType, SortType } from '@/types/filterType';
 import { PostDetailType, PostItemType } from '@/types/postType';
 
 const POST_PER_PAGE = 5;
 
-export const useGetPostList = (sortType: FilterType) => {
+export const useGetPostList = ({
+  currentSortType,
+  currentPartType,
+}: {
+  currentSortType: SortType;
+  currentPartType: FilterType;
+}) => {
   return useSuspenseInfiniteQuery<
     PostItemType[],
     Error,
@@ -15,8 +21,9 @@ export const useGetPostList = (sortType: FilterType) => {
     string[],
     number
   >({
-    queryKey: ['postList', sortType],
-    queryFn: ({ pageParam }) => getPostList({ page: pageParam, sortType }),
+    queryKey: ['postList', currentSortType, currentPartType],
+    queryFn: ({ pageParam }) =>
+      getPostList({ page: pageParam, sortType: currentSortType, part: currentPartType }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
       return lastPage.length === POST_PER_PAGE ? allPages.length : undefined;

@@ -1,13 +1,17 @@
 import { useState } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
 import DeleteIcon from '@/assets/delete.svg?react';
 import PencilIcon from '@/assets/petition/pencil.png';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import Spacing from '@/components/Spacing';
 import { TopBarControl } from '@/components/TopBarControl';
+import { usePostStory } from '@/hooks/queries/post.query';
 
 import { ActionBar } from './components/ActionBar';
+
 interface FormData {
   title: string;
   description: string;
@@ -16,11 +20,15 @@ interface FormData {
 }
 
 export const PostForm = () => {
+  const postStory = usePostStory();
+  const navigate = useNavigate();
+
   const [formData, setFormData] = useState<FormData>({
     title: '',
     description: '',
   });
   const [previewUrl, setPreviewUrl] = useState('');
+  const isValid = formData.title == '' || formData.description == '';
 
   const updateField = (field: Partial<FormData>) => {
     setFormData((prev) => {
@@ -41,7 +49,23 @@ export const PostForm = () => {
 
     updateField({ image: file });
   };
-  const isValid = formData.title == '' || formData.description == '';
+
+  const handleSubmit = async () => {
+    const multipartFormData = new FormData();
+
+    multipartFormData.append('title', formData.title);
+    multipartFormData.append('description', formData.description);
+
+    if (formData.tagList && formData.tagList.length > 0) {
+      multipartFormData.append('tags', JSON.stringify(formData.tagList));
+    }
+    if (formData.image) {
+      multipartFormData.append('file', formData.image);
+    }
+
+    await postStory.mutateAsync(multipartFormData);
+    navigate('/feed');
+  };
 
   return (
     <div className="flex h-full flex-col">
@@ -93,16 +117,8 @@ export const PostForm = () => {
         onChangeImage={handleChangeImage}
         onChangeTag={(tagList) => updateField({ tagList })}
       />
-      <Spacing size={5.2} />
-      {/* TODO: 서버 API 연결 */}
-      <Button
-        buttonLabel="게시하기"
-        onClick={() => console.log(formData)}
-        disabled={isValid}
-        style={{
-          backgroundColor: !isValid ? '#1A8CFF' : '#B5B5B5',
-        }}
-      />
+      <Spacing size={2} />
+      <Button buttonLabel="게시하기" onClick={handleSubmit} disabled={isValid} />
     </div>
   );
 };
