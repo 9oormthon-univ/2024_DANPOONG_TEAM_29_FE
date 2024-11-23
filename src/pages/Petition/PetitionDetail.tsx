@@ -77,10 +77,12 @@ export const PetitionDetail = () => {
         <p className="text-sm font-bold">{formatName(dummyData.person)}</p>
         <Spacing size={3} />
         <p className="text-lg font-bold">청원의 취지</p>
-        <p className="leading-0.1 text-xs">{dummyData.intend}</p>
+        <div className="whitespace-pre-wrap text-xs leading-5">{dummyData.intend}</div>
         <Spacing size={3} />
         <p className="text-lg font-bold">청원의 내용</p>
-        <p className="leading-0.1 text-xs tracking-[-0.04em]">{dummyData.contents}</p>
+        <div className="min-h-[300px] w-full whitespace-pre-wrap text-xs leading-5 tracking-[-0.04em]">
+          {dummyData.contents}
+        </div>
         <Spacing size={7} />
         <Button buttonLabel="청원하기" onClick={() => ref.current?.showModal()} />
       </div>

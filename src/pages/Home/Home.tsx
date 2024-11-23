@@ -56,6 +56,7 @@ export const Home = () => {
               count={1000}
               startDate="2024.11.14"
               endDate="2024.11.29"
+              onClick={() => navigate('petition/1')}
             />
           ))}
         </div>

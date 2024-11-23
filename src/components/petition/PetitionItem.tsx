@@ -9,11 +9,22 @@ interface PetitionItemProps {
   count: number;
   startDate: string;
   endDate: string;
+  onClick: () => void;
 }
 
-export const PetitionItem = ({ category, title, count, startDate, endDate }: PetitionItemProps) => {
+export const PetitionItem = ({
+  category,
+  title,
+  count,
+  startDate,
+  endDate,
+  onClick,
+}: PetitionItemProps) => {
   return (
-    <div className="flex h-[178px] flex-col justify-between rounded-[10px] bg-[#F7F7F7] p-2 text-xs leading-5">
+    <button
+      onClick={onClick}
+      className="flex h-[178px] flex-col justify-between rounded-[10px] bg-[#F7F7F7] p-2 text-xs leading-5"
+    >
       <div>
         <div className="flex items-center">
           <p className="inline-block text-[10px] text-[#228CFF]">{category}</p>
@@ -31,6 +42,6 @@ export const PetitionItem = ({ category, title, count, startDate, endDate }: Pet
           {startDate} ~ {endDate}
         </p>
       </div>
-    </div>
+    </button>
   );
 };
