@@ -1,7 +1,7 @@
-import { InfiniteData, useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { InfiniteData, useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
 
-import { getPetitionList } from '@/api/petition.api';
-import { PetitionItemType } from '@/types/petitionType';
+import { getPetitionDetail, getPetitionList } from '@/api/petition.api';
+import { PetitionDetailType, PetitionItemType } from '@/types/petitionType';
 
 const PETITION_PER_PAGE = 8;
 
@@ -21,5 +21,12 @@ export const useGetPetitionList = (working_condition: string) => {
       return lastPage.length === PETITION_PER_PAGE ? allPages.length : undefined;
     },
     retry: false,
+  });
+};
+
+export const useGetPetitionDetail = (petitionId: number) => {
+  return useSuspenseQuery<PetitionDetailType>({
+    queryKey: ['petitionDetail', petitionId],
+    queryFn: () => getPetitionDetail(petitionId),
   });
 };
