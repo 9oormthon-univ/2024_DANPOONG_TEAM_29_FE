@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import { LayoutWithNavigation } from './components/layout/LayoutWithNavigation';
 import { MainLayout } from './components/layout/MainLayout';
+import { Loading } from './components/Loading';
 import { Auth } from './pages/Auth/Auth';
 import { LanguageSelection } from './pages/Auth/LanguageSelection';
 import { SignUpForm } from './pages/Auth/SignUpForm';
@@ -96,7 +97,7 @@ const App = () => {
           return <div>fallback</div>;
         }}
       >
-        <Suspense fallback={<div>loading</div>}>
+        <Suspense fallback={<Loading />}>
           <RouterProvider router={router} />
         </Suspense>
       </ErrorBoundary>
