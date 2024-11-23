@@ -10,9 +10,9 @@ interface UserStore {
 
 export const useInfoStore = create<UserStore>((set) => ({
   userList: [
-    { type: 'nickName', value: '' },
-    { type: 'age', value: '' },
-    { type: 'career', value: '' },
+    { type: 'nickname', value: '' },
+    { type: 'ageRange', value: '' },
+    { type: 'part', value: '' },
     { type: 'name', value: '' },
     { type: 'language', value: '' },
   ],

@@ -20,7 +20,7 @@ export const SUPPORTED_LANGUAGES = [
 ] as const;
 
 export interface UserItem {
-  type: UserInfoType;
+  type: keyof UserInfoType;
   value: string;
 }
 
