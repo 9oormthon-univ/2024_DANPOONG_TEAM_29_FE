@@ -81,7 +81,6 @@ const petitionDummy = {
   createdDate: '2024-11-23',
 };
 
-
 export const petitionHandlers = [
   http.get('http://localhost:5173/petitions', () => {
     return HttpResponse.json(petitionListDummy);
