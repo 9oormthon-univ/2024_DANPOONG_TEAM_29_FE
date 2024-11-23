@@ -34,7 +34,7 @@ export const PetitionItem = ({
           <p className="font-bold">{formatNumber(agreementCount)}명</p>
         </div>
         <p className="font-medium">
-          {createdDate} ~ {agreementDeadline}
+          {createdDate.replace(/-/g, '.')} ~ {agreementDeadline.replace(/-/g, '.')}
         </p>
       </div>
     </button>
