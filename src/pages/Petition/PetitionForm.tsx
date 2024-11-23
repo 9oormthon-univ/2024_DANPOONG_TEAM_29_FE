@@ -9,6 +9,8 @@ import { Input } from '@/components/Input';
 import { Modal } from '@/components/Modal';
 import Spacing from '@/components/Spacing';
 import { TopBarControl } from '@/components/TopBarControl';
+
+import { CustomTextArea } from './components/PetitionTextArea';
 interface FormData {
   title: string;
   contents: string;
@@ -44,24 +46,41 @@ export const PetitionForm = () => {
     contents: '',
     intend: '',
   });
+
+  const [didEdit, setDidEdit] = useState({
+    title: false,
+    category: false,
+    contents: false,
+    intend: false,
+  });
+
   const isValid =
     formData.title === '' ||
     formData.contents === '' ||
     formData.intend === '' ||
     formData.category === '';
-  const updateField = (field: Partial<FormData>) => {
+
+  const updateField = (field: Partial<FormData>, identifier: string) => {
     setFormData((prev) => {
       return { ...prev, ...field };
     });
-  };
-
-  const handlePrevClick = () => {
-    return;
+    setDidEdit((prevEdit) => ({
+      ...prevEdit,
+      [identifier]: false,
+    }));
   };
 
   const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    updateField({ category: e.target.value });
+    updateField({ category: e.target.value }, 'category');
   };
+
+  function handleInputBlur(identifier: string) {
+    setDidEdit((prevEdit) => ({
+      ...prevEdit,
+      [identifier]: true,
+    }));
+  }
+  console.log(didEdit.title);
 
   return (
     <>
@@ -85,24 +104,19 @@ export const PetitionForm = () => {
         </div>
       </Modal>
       <div className="flex flex-col">
-        <div className="flex flex-row">
-          <TopBarControl
-            handlePrevClick={handlePrevClick}
-            title="청원 내용을 입력해주세요"
-            size={15}
-          ></TopBarControl>
+        <TopBarControl title="청원 내용을 입력해주세요" size={14}>
           <span className="inline-flex items-center">
             <img src={PencilIcon} alt="pencil" className="h-[24px] w-[24px]" />
           </span>
-        </div>
-
+        </TopBarControl>
         <Spacing size={4} />
         <span className="text-base font-bold">분야</span>
         <Spacing size={0.75} />
         <select
           className="h-9 w-full rounded-[10px] border border-light-gray px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#228CFF]"
-          value={formData.category} 
-          onChange={handleCategoryChange} 
+          value={formData.category}
+          onChange={handleCategoryChange}
+          onBlur={() => handleInputBlur('category')}
         >
           <option value="" disabled>
             선택해주세요
@@ -116,37 +130,33 @@ export const PetitionForm = () => {
         <Spacing size={1.75} />
         <Input
           value={formData.title}
-          onChange={(e) => updateField({ title: e.target.value })}
+          onChange={(e) => updateField({ title: e.target.value }, 'title')}
           fieldLabel="제목"
           placeholder="제목을 입력해주세요"
           maxLength={100}
+          onBlur={() => handleInputBlur('title')}
         ></Input>
         <Spacing size={1.75} />
-        <div className="mb-[9px] flex justify-between">
-          <span className="text-base font-bold">청원의 취지</span>
-        </div>
-        <div className="flex min-h-[80px] flex-col justify-between rounded-[10px] border border-light-gray px-[11px] py-2">
-          <textarea
-            className="h-[140px] w-full resize-none whitespace-pre-wrap rounded-md outline-none focus:caret-[#54BBFF] focus:outline-[#228CFF]"
-            value={formData.intend}
-            onChange={(e) => updateField({ intend: e.target.value })}
-            placeholder="내용을 입력해주세요"
-          />
-        </div>
+        <CustomTextArea
+          value={formData.intend}
+          onChange={(value) => updateField({ intend: value }, 'intend')}
+          onBlur={() => handleInputBlur('intend')}
+          title="청원의 취지"
+          areaHeight={140}
+          placeholder="취지를 입력해주세요"
+          isError={didEdit.intend && formData.intend.trim() === ''}
+        />
         <Spacing size={1.75} />
 
-        <div className="mb-[9px] flex justify-between">
-          <span className="text-base font-bold">청원의 내용</span>
-        </div>
-        <div className="flex min-h-[329px] flex-col justify-between rounded-[10px] border border-light-gray px-[11px] py-2">
-          <textarea
-            className="h-[329px] w-full resize-none whitespace-pre-wrap rounded-md border-none outline-none focus:caret-[#54BBFF] focus:outline-[#228CFF]"
-            value={formData.contents}
-            onChange={(e) => updateField({ contents: e.target.value })}
-            placeholder="내용을 입력해주세요"
-          />
-        </div>
-        <p className="text-xs text-[#FF7A7A]"></p>
+        <CustomTextArea
+          value={formData.contents}
+          onChange={(value) => updateField({ contents: value }, 'contents')}
+          onBlur={() => handleInputBlur('contents')}
+          title="청원의 내용"
+          areaHeight={329}
+          placeholder="내용을 입력해주세요"
+          isError={didEdit.contents && formData.contents.trim() === ''}
+        />
 
         <Spacing size={0.75} />
 

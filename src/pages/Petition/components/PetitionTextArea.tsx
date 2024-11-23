@@ -1,36 +1,39 @@
-import React from 'react';
-
-interface FormData {
+interface TextAreaProps {
+  value: string;
+  onChange: (value: string) => void;
+  onBlur?: () => void;
+  areaHeight?: number;
   title: string;
-  contents: string;
-  category: string;
-  intend: string;
+  placeholder?: string;
+  isError: boolean;
 }
 
-interface PetitionTextAreaProps {
-  formData: FormData;
-  title: string;
-  type: keyof FormData; // 'title' | 'contents' | 'category' | 'intend'
-  length: number;
-  updateField: (e: React.ChangeEvent<HTMLTextAreaElement>, fieldName: keyof FormData) => void;
-}
-
-export const PetitionTextArea = ({ formData, updateField, type, title }: PetitionTextAreaProps) => {
+export const CustomTextArea = ({
+  value,
+  onChange,
+  onBlur,
+  areaHeight = 329,
+  title,
+  placeholder = '내용을 입력해주세요',
+}: TextAreaProps) => {
   return (
-    <>
+    <div>
       <div className="mb-[9px] flex justify-between">
-        <span className="text-base">
-          {title} <span className="font-bold text-[#FF0000]">*</span>
-        </span>
+        <span className="text-base font-bold">{title}</span>
       </div>
-      <div className="flex min-h-[329px] flex-col justify-between rounded-[10px] border border-light-gray px-[11px] py-2">
+      <div
+        className="flex flex-col justify-between rounded-[10px] border border-light-gray px-[11px] py-2"
+        style={{ minHeight: `${areaHeight}px` }}
+      >
         <textarea
-          className="h-[140px] w-full resize-none outline-none"
-          value={formData[type]}
-          onChange={(e) => updateField(e, type)} // Pass the event and the type of the field
-          placeholder="내용을 입력해주세요"
+          className="h-full w-full resize-none whitespace-pre-wrap rounded-md border-none outline-none focus:caret-[#54BBFF]"
+          value={value}
+          onChange={(e) => onChange(e.target.value)}
+          placeholder={placeholder}
+          onBlur={onBlur}
         />
       </div>
-    </>
+      {/* {isError && <p className="text-xs text-[#FF7A7A]">필수 항목입니다.</p>} */}
+    </div>
   );
 };

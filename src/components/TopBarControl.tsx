@@ -1,16 +1,23 @@
-import PrevClickIcon from '@/assets/prevClick.svg?react';
+import { useCallback } from 'react';
 
+import { useNavigate } from 'react-router-dom';
+
+import PrevClickIcon from '@/assets/prevClick.svg?react';
 interface TopBarProps {
-  title: string;
+  title?: string;
   size: number;
-  handlePrevClick: () => void;
+  children?: React.ReactNode;
 }
 
-export const TopBarControl = ({ title, size, handlePrevClick }: TopBarProps) => {
+export const TopBarControl = ({ title, size, children }: TopBarProps) => {
+  const navigate = useNavigate();
+  const handlePrevClick = useCallback(() => {
+    navigate('../');
+  }, [navigate]);
   return (
     <>
       <div className="flex h-[2.1rem] flex-row items-center">
-        <PrevClickIcon className="w-[1.5rem]" onClick={handlePrevClick}></PrevClickIcon>
+        <PrevClickIcon className="h-4 w-4 cursor-pointer" onClick={handlePrevClick}></PrevClickIcon>
         <span
           style={{
             width: size + 'rem',
@@ -19,6 +26,7 @@ export const TopBarControl = ({ title, size, handlePrevClick }: TopBarProps) => 
         >
           {title}
         </span>
+        {children}
       </div>
     </>
   );

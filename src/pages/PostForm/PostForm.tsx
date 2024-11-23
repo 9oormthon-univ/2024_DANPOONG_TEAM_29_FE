@@ -1,12 +1,13 @@
 import { useState } from 'react';
 
 import DeleteIcon from '@/assets/delete.svg?react';
+import PencilIcon from '@/assets/petition/pencil.png';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
 import Spacing from '@/components/Spacing';
+import { TopBarControl } from '@/components/TopBarControl';
 
 import { ActionBar } from './components/ActionBar';
-
 interface FormData {
   title: string;
   description: string;
@@ -40,9 +41,16 @@ export const PostForm = () => {
 
     updateField({ image: file });
   };
+  const isValid = formData.title == '' || formData.description == '';
 
   return (
-    <div className="flex h-full flex-col justify-center">
+    <div className="flex h-full flex-col">
+      <TopBarControl title="이야기를 작성해보세요" size={12}>
+        <span className="inline-flex items-center">
+          <img src={PencilIcon} alt="pencil" className="h-[24px] w-[24px]" />
+        </span>
+      </TopBarControl>
+      <Spacing size={2} />
       <Input
         value={formData.title}
         onChange={(e) => updateField({ title: e.target.value })}
@@ -53,14 +61,14 @@ export const PostForm = () => {
       <Spacing size={1.75} />
 
       <div className="mb-[9px] flex justify-between">
-        <span className="text-base">내용</span>
+        <span className="text-base font-bold">내용</span>
         <span>
           ({formData.description.length} / {500})
         </span>
       </div>
       <div className="flex min-h-[329px] flex-col justify-between rounded-[10px] border border-light-gray px-[11px] py-2">
         <textarea
-          className="h-[140px] w-full resize-none outline-none"
+          className="h-[140px] w-full resize-none outline-none focus:caret-[#54BBFF]"
           value={formData.description}
           onChange={(e) => updateField({ description: e.target.value })}
           placeholder="내용을 입력해주세요"
@@ -90,7 +98,10 @@ export const PostForm = () => {
       <Button
         buttonLabel="게시하기"
         onClick={() => console.log(formData)}
-        disabled={formData.title == '' || formData.description == ''}
+        disabled={isValid}
+        style={{
+          backgroundColor: !isValid ? '#1A8CFF' : '#B5B5B5',
+        }}
       />
     </div>
   );
