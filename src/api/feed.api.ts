@@ -16,5 +16,3 @@ export const getPostDetail = async (postId: number) => {
   const { data } = await api.get(`/posts/${postId}`);
   return data;
 };
-
-
