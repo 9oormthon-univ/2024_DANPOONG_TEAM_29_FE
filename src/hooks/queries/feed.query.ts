@@ -3,7 +3,6 @@ import { useSuspenseQuery, useSuspenseInfiniteQuery } from '@tanstack/react-quer
 import { getPostDetail, getPostList, getRecommendUsers } from '@/api/feed.api';
 import { RecommendUserOption } from '@/types/feedOption';
 import { FilterType, SortType } from '@/types/filterType';
-import { PostDetailType } from '@/types/postType';
 
 export const useGetPostList = ({
   currentSortType,
@@ -37,8 +36,12 @@ export const useGetRecommendUsers = ({ size = 5, page = 0 }: RecommendUserOption
 };
 
 export const useGetPostDetail = (postId: number) => {
-  return useSuspenseQuery<PostDetailType>({
+  return useSuspenseQuery({
     queryKey: ['postDetail', postId],
     queryFn: () => getPostDetail(postId),
+    select: (data) => ({
+      postResponse: data.postResponse,
+      commentResponseList: data.commentResponseList,
+    }),
   });
 };

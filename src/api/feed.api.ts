@@ -1,5 +1,5 @@
 import { PostListOption, RecommendUserListResponse, RecommendUserOption } from '@/types/feedOption';
-import { PostListResponse } from '@/types/postType';
+import { PostDetailResponseDetail, PostListResponse } from '@/types/postType';
 
 import api from './index';
 
@@ -22,7 +22,7 @@ export const getRecommendUsers = async ({
   return data;
 };
 
-export const getPostDetail = async (postId: number) => {
+export const getPostDetail = async (postId: number): Promise<PostDetailResponseDetail> => {
   const { data } = await api.get(`/posts/${postId}`);
   return data;
 };

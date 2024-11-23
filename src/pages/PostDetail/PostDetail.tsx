@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from 'react-router-dom';
 
 import CommentIcon from '@/assets/comment.svg?react';
-import EmptyLike from '@/assets/emptyLike.svg';
+import EmptyLike from '@/assets/emptyLike.svg?react';
 import FillLike from '@/assets/fillLike.svg?react';
 import FollowIcon from '@/assets/follow.svg?react';
 import SendCommentIcon from '@/assets/sendComment.svg?react';
