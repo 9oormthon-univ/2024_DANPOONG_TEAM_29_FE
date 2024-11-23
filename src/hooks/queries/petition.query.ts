@@ -1,7 +1,7 @@
 import { useMutation, useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
 
 import { getPetitionDetail, getPetitionList, postPetition } from '@/api/petition.api';
-import { PetitionDetailType, PetitionPostType } from '@/types/petitionType';
+import { PetitionPostType } from '@/types/petitionType';
 
 export const useGetPetitionList = (working_condition: string) => {
   return useSuspenseInfiniteQuery({
@@ -20,7 +20,7 @@ export const useGetPetitionList = (working_condition: string) => {
 };
 
 export const useGetPetitionDetail = (petitionId: number) => {
-  return useSuspenseQuery<PetitionDetailType>({
+  return useSuspenseQuery({
     queryKey: ['petitionDetail', petitionId],
     queryFn: () => getPetitionDetail(petitionId),
   });

@@ -1,4 +1,4 @@
-import { PetitionListResponse, PetitionPostType } from '@/types/petitionType';
+import { PetitionDetailType, PetitionListResponse, PetitionPostType } from '@/types/petitionType';
 
 import api from './index';
 
@@ -23,7 +23,7 @@ export const postPetition = async (data: PetitionPostType): Promise<void> => {
   return response.data;
 };
 
-export const getPetitionDetail = async (petitionId: number) => {
+export const getPetitionDetail = async (petitionId: number): Promise<PetitionDetailType> => {
   const { data } = await api.get(`/petitions/${petitionId}`);
   return data;
 };
