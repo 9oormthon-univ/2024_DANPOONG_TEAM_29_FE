@@ -33,7 +33,7 @@ export const usePostPetition = () => {
       alert(error?.message);
     },
     onSuccess: () => {
-      alert('User information posted successfully!');
+      console.log('User information posted successfully!');
     },
   });
 };
