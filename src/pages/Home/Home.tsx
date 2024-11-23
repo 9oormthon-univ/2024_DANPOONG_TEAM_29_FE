@@ -23,13 +23,11 @@ export const Home = () => {
       <div className="flex h-[60px] items-center justify-between">
         <img src={LogoImg} alt="graphic logo" />
         <img src={TextLogoImg} alt="text logo" />
-        {/* TODO: 전역 상태 가져와서 유저 이미지로 수정 */}
-        <img src={LogoImg} className="h-8 w-8" />
       </div>
       <div className="relative flex justify-end">
         <div className="absolute bottom-0 left-0">
           {/* TODO: 전역 상태 가져와서 유저 네임으로 수정 */}
-          <p className="text-xs"> Nickname님 반가워요! </p>
+          <p className="text-xs"> 사용자님 반가워요! </p>
           <p className="text-base font-bold">{t('0')}</p>
         </div>
         <img src={EarthImg} className="h-auto w-[250px]" />
