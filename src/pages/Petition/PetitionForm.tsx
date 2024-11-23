@@ -9,58 +9,54 @@ import { Input } from '@/components/Input';
 import { Modal } from '@/components/Modal';
 import Spacing from '@/components/Spacing';
 import { TopBarControl } from '@/components/TopBarControl';
+import { usePostPetition } from '@/hooks/queries/petition.query';
+import { PetitionPostType } from '@/types/petitionType';
 
 import { CustomTextArea } from './components/PetitionTextArea';
-interface FormData {
-  title: string;
-  contents: string;
-  category: string;
-  intend: string;
-}
 
 const options = [
-  { value: 'housing', label: '주거 문제' },
-  { value: 'wages-benefits', label: '임금 및 복지' },
-  { value: 'labor-environment', label: '노동 환경 개선' },
-  { value: 'healthcare', label: '의료 및 건강관리' },
-  { value: 'social-rights', label: '사회적 권리 향상' },
-  { value: 'legal-protection', label: '법적 보호 및 권리' },
-  { value: 'education-adaptation', label: '교육 및 한국 생활 적응' },
-  { value: 'discrimination', label: '차별 및 부당 대우 방지' },
+  { value: 'MANUFACTURING', label: '제조업' },
+  { value: 'CONSTRUCTION', label: '건설업' },
+  { value: 'LOGISTICS', label: '운전 및 운송' },
+  { value: 'SERVICE', label: '서비스업' },
+  { value: 'AGRICULTURE', label: '농업 및 축산업' },
+  { value: 'FISHERIES', label: '어업' },
+  { value: 'HOUSECARE', label: '가사 및 돌봄' },
+  { value: 'PROFESSIONAL', label: '전문직' },
 ];
 
 export const PetitionForm = () => {
   const navigate = useNavigate();
+  const { mutate, isError, error } = usePostPetition();
+  const [formData, setFormData] = useState<PetitionPostType>({
+    title: '',
+    petitionType: '',
+    content: '',
+    purpose: '',
+  });
+  const [didEdit, setDidEdit] = useState({
+    title: false,
+    petitionType: false,
+    contents: false,
+    purpose: false,
+  });
 
   const ref = useRef<HTMLDialogElement>(null);
   const onClose = () => {
     ref.current?.close();
   };
   const onSubmit = () => {
-    console.log(formData);
+    mutate(formData);
     navigate('/');
   };
-  const [formData, setFormData] = useState<FormData>({
-    title: '',
-    category: '',
-    contents: '',
-    intend: '',
-  });
-
-  const [didEdit, setDidEdit] = useState({
-    title: false,
-    category: false,
-    contents: false,
-    intend: false,
-  });
 
   const isValid =
     formData.title === '' ||
-    formData.contents === '' ||
-    formData.intend === '' ||
-    formData.category === '';
+    formData.content === '' ||
+    formData.purpose === '' ||
+    formData.petitionType === '';
 
-  const updateField = (field: Partial<FormData>, identifier: string) => {
+  const updateField = (field: Partial<PetitionPostType>, identifier: string) => {
     setFormData((prev) => {
       return { ...prev, ...field };
     });
@@ -70,8 +66,8 @@ export const PetitionForm = () => {
     }));
   };
 
-  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    updateField({ category: e.target.value }, 'category');
+  const handleTypeChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    updateField({ petitionType: e.target.value }, 'petitionType');
   };
 
   function handleInputBlur(identifier: string) {
@@ -80,7 +76,10 @@ export const PetitionForm = () => {
       [identifier]: true,
     }));
   }
-  console.log(didEdit.title);
+
+  if (isError) {
+    alert(error.message);
+  }
 
   return (
     <>
@@ -114,9 +113,9 @@ export const PetitionForm = () => {
         <Spacing size={0.75} />
         <select
           className="h-9 w-full rounded-[10px] border border-light-gray px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#228CFF]"
-          value={formData.category}
-          onChange={handleCategoryChange}
-          onBlur={() => handleInputBlur('category')}
+          value={formData.petitionType}
+          onChange={handleTypeChange}
+          onBlur={() => handleInputBlur('petitionType')}
         >
           <option value="" disabled>
             선택해주세요
@@ -138,24 +137,24 @@ export const PetitionForm = () => {
         ></Input>
         <Spacing size={1.75} />
         <CustomTextArea
-          value={formData.intend}
-          onChange={(value) => updateField({ intend: value }, 'intend')}
-          onBlur={() => handleInputBlur('intend')}
+          value={formData.purpose}
+          onChange={(value) => updateField({ purpose: value }, 'purpose')}
+          onBlur={() => handleInputBlur('purpose')}
           title="청원의 취지"
           areaHeight={140}
           placeholder="취지를 입력해주세요"
-          isError={didEdit.intend && formData.intend.trim() === ''}
+          isError={didEdit.purpose && formData.purpose.trim() === ''}
         />
         <Spacing size={1.75} />
 
         <CustomTextArea
-          value={formData.contents}
-          onChange={(value) => updateField({ contents: value }, 'contents')}
-          onBlur={() => handleInputBlur('contents')}
+          value={formData.content}
+          onChange={(value) => updateField({ content: value }, 'content')}
+          onBlur={() => handleInputBlur('content')}
           title="청원의 내용"
           areaHeight={329}
           placeholder="내용을 입력해주세요"
-          isError={didEdit.contents && formData.contents.trim() === ''}
+          isError={didEdit.contents && formData.content.trim() === ''}
         />
 
         <Spacing size={0.75} />

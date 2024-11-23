@@ -88,4 +88,11 @@ export const petitionHandlers = [
   http.get('http://localhost:5173/petitions/:petitionId', () => {
     return HttpResponse.json(petitionDummy);
   }),
+  http.post('http://localhost:5173/petitions', () => {
+   
+    console.log('Received data:');
+    return HttpResponse.json({
+      message: 'Petition info submitted successfully',
+    });
+  }),
 ];

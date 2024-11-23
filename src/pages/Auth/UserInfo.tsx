@@ -3,7 +3,6 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 
-import { UserInfoRequest } from '@/api/userinfo.api';
 import PrevClickIcon from '@/assets/prevClick.svg?react';
 import { Button } from '@/components/Button';
 import Spacing from '@/components/Spacing';
@@ -24,7 +23,7 @@ const titleList = [
 
 const areaName = [
   {
-    name: 'nickName',
+    name: 'nickname',
     label: '닉네임',
     type: 'text',
     validation: {
@@ -40,7 +39,7 @@ const areaName = [
     },
   },
   {
-    name: 'age',
+    name: 'ageRange',
     label: '나이',
     type: 'select',
     options: Object.values(AgeRange),
@@ -52,8 +51,8 @@ const areaName = [
     },
   },
   {
-    name: 'career',
-    label: '직업',
+    name: 'part',
+    label: '직종',
     type: 'select',
     options: [
       '제조업',
@@ -117,15 +116,8 @@ export const UserInfo = () => {
   const { mutate, isPending, isError, error } = usePostUserInfo();
 
   const onSubmit = (data: UserInfoType) => {
-    const requestData: UserInfoRequest = {
-      name: data.name,
-      nickname: data.nickName,
-      ageRange: data.age,
-      part: data.career,
-      language: data.language,
-    };
-    console.log(requestData);
-    mutate({ request: requestData, file: '' });
+    console.log(data);
+    mutate({ request: data, file: '' });
   };
   const {
     register,
@@ -189,7 +181,7 @@ export const UserInfo = () => {
             <form className="flex h-[30rem] w-full flex-col">
               {curList.map((item, index) => (
                 <div key={item.name} className="mt-[2.2rem]">
-                  {item.name === 'career' || item.name === 'language' || item.name === 'age' ? (
+                  {item.name === 'part' || item.name === 'language' || item.name === 'ageRange' ? (
                     <>
                       <select
                         disabled={index >= 1}

@@ -1,7 +1,12 @@
-import { InfiniteData, useSuspenseInfiniteQuery, useSuspenseQuery } from '@tanstack/react-query';
+import {
+  InfiniteData,
+  useMutation,
+  useSuspenseInfiniteQuery,
+  useSuspenseQuery,
+} from '@tanstack/react-query';
 
-import { getPetitionDetail, getPetitionList } from '@/api/petition.api';
-import { PetitionDetailType, PetitionItemType } from '@/types/petitionType';
+import { getPetitionDetail, getPetitionList, postPetition } from '@/api/petition.api';
+import { PetitionDetailType, PetitionItemType, PetitionPostType } from '@/types/petitionType';
 
 const PETITION_PER_PAGE = 8;
 
@@ -28,5 +33,17 @@ export const useGetPetitionDetail = (petitionId: number) => {
   return useSuspenseQuery<PetitionDetailType>({
     queryKey: ['petitionDetail', petitionId],
     queryFn: () => getPetitionDetail(petitionId),
+  });
+};
+
+export const usePostPetition = () => {
+  return useMutation({
+    mutationFn: (data: PetitionPostType) => postPetition(data),
+    onError: (error) => {
+      alert(error?.message);
+    },
+    onSuccess: () => {
+      alert('User information posted successfully!');
+    },
   });
 };
