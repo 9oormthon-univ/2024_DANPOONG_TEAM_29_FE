@@ -125,7 +125,7 @@ export const UserInfo = () => {
       language: data.language,
     };
     console.log(requestData);
-    //mutate({ request: requestData, file: '' });
+    mutate({ request: requestData, file: '' });
   };
   const {
     register,

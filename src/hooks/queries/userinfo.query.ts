@@ -6,7 +6,7 @@ export const usePostUserInfo = () => {
   return useMutation({
     mutationFn: (data: { request: UserInfoRequest; file: string }) =>
       postUserInfo(data.request, data.file),
-    onError: (error: any) => {
+    onError: (error) => {
       alert(error?.message);
     },
     onSuccess: () => {
