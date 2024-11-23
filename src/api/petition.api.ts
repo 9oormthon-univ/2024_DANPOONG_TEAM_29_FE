@@ -14,6 +14,6 @@ export const getPetitionList = async ({
 };
 
 export const getPetitionDetail = async (petitionId: number) => {
-  const { data } = await api.get(`/petition/${petitionId}`);
+  const { data } = await api.get(`/petitions/${petitionId}`);
   return data;
 };
