@@ -3,7 +3,7 @@ import { http, HttpResponse } from 'msw';
 export const userInfoHandlers = [
 
   http.post('http://localhost:5173/users', (req) => {
-    const requestBody = req.body;
+    const requestBody = req;
     console.log('Received data:', requestBody);
     return HttpResponse.json({
       ...requestBody,
