@@ -18,6 +18,16 @@ export interface PetitionPostType {
   petitionType: string;
 }
 
+export interface PetitionListResponse {
+  sortByAgreementCount: boolean;
+  size: number;
+  includeExpired: boolean;
+  hasNext: boolean;
+  petitionType: string | null;
+  page: number;
+  PetitionResponseList: PetitionItemType[];
+}
+
 export interface PetitionItemType {
   id: number;
   title: string;

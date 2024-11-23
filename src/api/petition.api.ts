@@ -1,4 +1,4 @@
-import { PetitionPostType } from '@/types/petitionType';
+import { PetitionListResponse, PetitionPostType } from '@/types/petitionType';
 
 import api from './index';
 
@@ -8,7 +8,7 @@ export const getPetitionList = async ({
 }: {
   page: number;
   working_condition: string;
-}) => {
+}): Promise<PetitionListResponse> => {
   const { data } = await api.get(
     `/petitions?page=${page}&size=8&includeExpired=true&petitionType=${working_condition}&sortByAgreementCount=true`,
   );
