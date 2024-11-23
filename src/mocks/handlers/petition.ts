@@ -69,15 +69,16 @@ const petitionListDummy = [
 
 const petitionDummy = {
   agreementDeadline: '2025-01-18',
-  purpose: '宗旨 8',
+  purpose:
+    '청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 청원의 취지 ',
   isAgreement: false,
   name: '모킹 유저',
   isMyPetition: false,
   petitionType: '工作條件',
-  agreementCount: 1000,
+  agreementCount: 167,
   title: '모킹 청원',
   content: '모킹 청원입니다~~~ 서버 데이터 아님~~~',
-  createDate: '2024-11-23',
+  createdDate: '2024-11-23',
 };
 
 export const petitionHandlers = [
