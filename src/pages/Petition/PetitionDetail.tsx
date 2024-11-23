@@ -1,5 +1,6 @@
 import { useRef } from 'react';
 
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import ClipBoardImg from '@/assets/clipboard.png';
@@ -19,7 +20,7 @@ const TOTAL_PETITION = 1000;
 export const PetitionDetail = () => {
   const { petitionId } = useParams();
   const navigate = useNavigate();
-
+  const { t } = useTranslation('petitionForm');
   if (isNaN(Number(petitionId))) navigate('/petition/feed');
 
   const { data } = useGetPetitionDetail(Number(petitionId));
@@ -55,12 +56,12 @@ export const PetitionDetail = () => {
           {data.createdDate.replace(/-/g, '.')}
         </p>
         <Spacing size={3} />
-        <p className="text-lg font-bold">동의기간</p>
+        <p className="text-lg font-bold">{t('24')}</p>
         <p className="text-sm font-medium">
           {data.createdDate.replace(/-/g, '.')} ~ {data.agreementDeadline.replace(/-/g, '.')}
         </p>
         <Spacing size={3} />
-        <p className="text-lg font-bold">동의수</p>
+        <p className="text-lg font-bold">{t('25')}</p>
         <div className="mb-1 flex flex-row justify-between">
           <div className="mb-1 flex flex-row">
             <PetitionIcon className="mr-[2px] h-[1.4rem] w-[1.4rem]" />
@@ -70,18 +71,18 @@ export const PetitionDetail = () => {
         </div>
         <ProgressBar percentage={petitionPercent} />
         <Spacing size={3} />
-        <p className="text-lg font-bold">청원인</p>
+        <p className="text-lg font-bold">{t('26')}</p>
         <p className="text-sm font-medium">{formatName(data.name)}</p>
         <Spacing size={3} />
-        <p className="text-lg font-bold">청원의 취지</p>
+        <p className="text-lg font-bold">{t('27')}</p>
         <div className="whitespace-pre-wrap text-xs leading-5">{data.purpose}</div>
         <Spacing size={3} />
-        <p className="text-lg font-bold">청원의 내용</p>
+        <p className="text-lg font-bold">{t('28')}</p>
         <div className="min-h-fit w-full whitespace-pre-wrap text-xs leading-5 tracking-[-0.04em]">
           {data.content}
         </div>
         <Spacing size={7} />
-        <Button buttonLabel="청원하기" onClick={() => ref.current?.showModal()} />
+        <Button buttonLabel={t('29')} onClick={() => ref.current?.showModal()} />
       </div>
     </>
   );

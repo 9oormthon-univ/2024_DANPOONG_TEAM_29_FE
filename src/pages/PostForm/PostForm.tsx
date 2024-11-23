@@ -1,5 +1,6 @@
 import { useState } from 'react';
 
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import DeleteIcon from '@/assets/delete.svg?react';
@@ -22,7 +23,7 @@ interface FormData {
 export const PostForm = () => {
   const postStory = usePostStory();
   const navigate = useNavigate();
-
+  const { t } = useTranslation('form');
   const [formData, setFormData] = useState<FormData>({
     title: '',
     description: '',
@@ -70,7 +71,7 @@ export const PostForm = () => {
 
   return (
     <div className="flex h-full flex-col">
-      <TopBarControl title="이야기를 작성해보세요" size={12}>
+      <TopBarControl title={t('0')} size={12}>
         <span className="inline-flex items-center">
           <img src={PencilIcon} alt="pencil" className="h-[24px] w-[24px]" />
         </span>
@@ -79,14 +80,14 @@ export const PostForm = () => {
       <Input
         value={formData.title}
         onChange={(e) => updateField({ title: e.target.value })}
-        fieldLabel="제목"
-        placeholder="제목을 입력해주세요"
+        fieldLabel={t('1')}
+        placeholder={t('2')}
         maxLength={100}
       />
       <Spacing size={1.75} />
 
       <div className="mb-[9px] flex justify-between">
-        <span className="text-base font-bold">내용</span>
+        <span className="text-base font-bold">{t('5')} </span>
         <span>
           ({formData.description.length} / {500})
         </span>
@@ -96,7 +97,7 @@ export const PostForm = () => {
           className="h-[140px] w-full resize-none outline-none focus:caret-[#54BBFF]"
           value={formData.description}
           onChange={(e) => updateField({ description: e.target.value })}
-          placeholder="내용을 입력해주세요"
+          placeholder={t('3')}
         />
         {previewUrl && (
           <div className="relative pt-2">
@@ -119,7 +120,7 @@ export const PostForm = () => {
         onChangeTag={(tagList) => updateField({ tagList })}
       />
       <Spacing size={2} />
-      <Button buttonLabel="게시하기" onClick={handleSubmit} disabled={isValid} />
+      <Button buttonLabel={t('4')} onClick={handleSubmit} disabled={isValid} />
     </div>
   );
 };
