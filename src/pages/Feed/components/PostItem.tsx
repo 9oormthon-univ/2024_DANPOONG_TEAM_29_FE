@@ -3,9 +3,10 @@ import { useNavigate } from 'react-router-dom';
 import EmptyLike from '@/assets/emptyLike.svg?react';
 import FillLike from '@/assets/fillLike.svg?react';
 import { TagItem } from '@/components/tag/TagItem';
+import { usePostLike } from '@/hooks/queries/posLike.query';
 import { formatTimeToAbsoluteOrRelative } from '@/utils/formatTime';
 
-interface PostItemProps {
+export interface PostItemProps {
   authorInfo: {
     authorId: number;
     authorNickName: string;
@@ -33,7 +34,7 @@ export const PostItem = ({
   postImageUrl,
 }: PostItemProps) => {
   const navigate = useNavigate();
-
+  const { mutate } = usePostLike(postId);
   return (
     <div
       className="flex cursor-pointer gap-[10px] border-b-[1px] border-[#54BBFF] py-5"
@@ -66,7 +67,21 @@ export const PostItem = ({
           </div>
           <div className="flex items-center gap-1">
             <p className="text-xs">{likeCount}</p>
-            {isLike ? <FillLike /> : <EmptyLike />}
+            {isLike ? (
+              <FillLike
+                onClick={(e) => {
+                  e.stopPropagation();
+                  mutate(true);
+                }}
+              />
+            ) : (
+              <EmptyLike
+                onClick={(e) => {
+                  e.stopPropagation();
+                  mutate(false);
+                }}
+              />
+            )}
           </div>
         </div>
       </div>

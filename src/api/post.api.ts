@@ -8,3 +8,8 @@ export const postStory = async (post: globalThis.FormData) => {
   });
   return data;
 };
+
+export const postLike = async (postId: number): Promise<void> => {
+  const response = await api.get(`/posts/like/${postId}`);
+  return response.data;
+};
