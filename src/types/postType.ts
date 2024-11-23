@@ -1,3 +1,13 @@
+export interface PostListResponse {
+  sortType: string | null;
+  part: string | null;
+  size: number;
+  includeExpired: boolean;
+  hasNext: boolean;
+  page: number;
+  postResponseList: PostItemType[];
+}
+
 export interface PostItemType {
   authorInfo: {
     authorId: number;

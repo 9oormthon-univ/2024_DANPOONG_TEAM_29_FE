@@ -1,11 +1,9 @@
-import { useSuspenseQuery, InfiniteData, useSuspenseInfiniteQuery } from '@tanstack/react-query';
+import { useSuspenseQuery, useSuspenseInfiniteQuery } from '@tanstack/react-query';
 
 import { getPostDetail, getPostList, getRecommendUsers } from '@/api/feed.api';
 import { RecommendUserOption } from '@/types/feedOption';
 import { FilterType, SortType } from '@/types/filterType';
-import { PostDetailType, PostItemType } from '@/types/postType';
-
-const POST_PER_PAGE = 5;
+import { PostDetailType } from '@/types/postType';
 
 export const useGetPostList = ({
   currentSortType,
@@ -14,20 +12,18 @@ export const useGetPostList = ({
   currentSortType: SortType;
   currentPartType: FilterType;
 }) => {
-  return useSuspenseInfiniteQuery<
-    PostItemType[],
-    Error,
-    InfiniteData<PostItemType[]>,
-    string[],
-    number
-  >({
+  return useSuspenseInfiniteQuery({
     queryKey: ['postList', currentSortType, currentPartType],
     queryFn: ({ pageParam }) =>
       getPostList({ page: pageParam, sortType: currentSortType, part: currentPartType }),
     initialPageParam: 0,
     getNextPageParam: (lastPage, allPages) => {
-      return lastPage.length === POST_PER_PAGE ? allPages.length : undefined;
+      return lastPage.hasNext == true ? allPages.length : undefined;
     },
+    select: (data) => ({
+      pages: data.pages.map((page) => page.postResponseList),
+      pageParams: data.pageParams,
+    }),
     retry: false,
   });
 };
@@ -36,6 +32,7 @@ export const useGetRecommendUsers = ({ size = 5, page = 0 }: RecommendUserOption
   return useSuspenseQuery({
     queryKey: ['recommendUser', size, page],
     queryFn: () => getRecommendUsers({ size, page }),
+    select: (data) => data.userRecommendResponseList,
   });
 };
 
