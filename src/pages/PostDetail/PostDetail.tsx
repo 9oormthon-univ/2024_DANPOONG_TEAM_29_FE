@@ -1,3 +1,5 @@
+import { useRef } from 'react';
+
 import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
@@ -9,7 +11,9 @@ import SendCommentIcon from '@/assets/sendComment.svg?react';
 import Spacing from '@/components/Spacing';
 import { TagItem } from '@/components/tag/TagItem';
 import { TopBarControl } from '@/components/TopBarControl';
+import { useComment } from '@/hooks/queries/comment.query';
 import { useGetPostDetail } from '@/hooks/queries/feed.query';
+import { usePostLike } from '@/hooks/queries/posLike.query';
 import { formatDateTime } from '@/utils/formatTime';
 
 import { CommentItem } from './components/CommentItem';
@@ -33,12 +37,15 @@ interface PostDetail {
 export const PostDetail = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
+  const { mutate } = usePostLike(Number(postId));
   const { t } = useTranslation('form');
   if (isNaN(Number(postId))) navigate('/feed');
-
+  const { mutate: commentMutate } = useComment(Number(postId));
   const { data } = useGetPostDetail(Number(postId));
   const { authorInfo, createdAt, title, content, likeCount, isLike, tags, postImageUrl } =
     data.postResponse;
+
+  const inputRef = useRef<HTMLInputElement>(null);
 
   return (
     <>
@@ -53,7 +60,11 @@ export const PostDetail = () => {
           </div>
           <div className="flex items-center gap-1">
             <p className="text-xs">{likeCount}</p>
-            {isLike ? <FillLike /> : <EmptyLike />}
+            {isLike ? (
+              <FillLike onClick={() => mutate(true)} />
+            ) : (
+              <EmptyLike onClick={() => mutate(false)} />
+            )}
           </div>
         </div>
         <p className="text-lg font-medium leading-7">{title}</p>
@@ -82,11 +93,12 @@ export const PostDetail = () => {
         <div className="mb-7 mt-4 flex items-center gap-3">
           <CommentIcon />
           <input
+            ref={inputRef}
             placeholder={`${authorInfo.authorNickName}${t('7')}`}
             className="grow rounded-[10px] border border-light-gray px-3 py-2 text-xs focus:border-[#228CFF] focus:outline-none"
           />
           {/* TODO: 댓글 추가 API 연결 */}
-          <SendCommentIcon />
+          <SendCommentIcon onClick={() => commentMutate(inputRef.current!.value)} />
         </div>
         <div className="flex flex-col gap-7">
           {data.commentResponseList.map(
