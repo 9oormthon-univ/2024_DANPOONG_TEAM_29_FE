@@ -1,18 +1,11 @@
-import api from '.'; 
+import { UserInfoType } from '@/types/userInfoType';
 
-export type UserInfoRequest = {
-  name: string;
-  nickname: string;
-  ageRange: string | 'NULL';
-  part: string;
-  language: string;
-};
+import api from '.';
 
-export const postUserInfo = async (request: UserInfoRequest, file: string): Promise<void> => {
- 
+export const postUserInfo = async (request: UserInfoType, file: string): Promise<void> => {
   const response = await api.post('/users', {
-    request, 
-    file,    
+    request,
+    file,
   });
 
   return response.data;
