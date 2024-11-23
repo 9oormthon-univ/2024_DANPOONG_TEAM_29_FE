@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 
 import PrevClickIcon from '@/assets/prevClick.svg?react';
 import { Button } from '@/components/Button';
+import { Loading } from '@/components/Loading';
 import Spacing from '@/components/Spacing';
 import { usePostUserInfo } from '@/hooks/queries/userinfo.query';
 import { useInfoStore } from '@/store/useInfoStore';
@@ -112,7 +113,7 @@ const areaName = [
 export const UserInfo = () => {
   const [titleNum, setTitleNum] = useState(0);
   const { userList } = useInfoStore();
-
+  const navigate = useNavigate();
   const { mutate, isPending, isError, error } = usePostUserInfo();
 
   const onSubmit = (data: UserInfoType) => {
@@ -127,7 +128,6 @@ export const UserInfo = () => {
     mode: 'onChange',
   });
 
-  const navigate = useNavigate();
   const TOTAL_QUESTIONS = 5;
   const startIndex = Math.max(TOTAL_QUESTIONS - titleNum - 1, 0);
   const curList = areaName.slice(startIndex, TOTAL_QUESTIONS);
@@ -155,7 +155,7 @@ export const UserInfo = () => {
   return (
     <>
       {isPending ? (
-        <p>loading...</p>
+        <Loading />
       ) : (
         <div className="w-full flex-col items-center">
           {titleNum < 5 ? (

@@ -10,7 +10,7 @@ export const usePostUserInfo = () => {
       alert(error?.message);
     },
     onSuccess: () => {
-      alert('User information posted successfully!');
+      console.log('User information posted successfully!');
     },
   });
 };

@@ -6,6 +6,7 @@ import EraseIcon from '@/assets/petition/eraser.png';
 import PencilIcon from '@/assets/petition/pencil.png';
 import { Button } from '@/components/Button';
 import { Input } from '@/components/Input';
+import { Loading } from '@/components/Loading';
 import { Modal } from '@/components/Modal';
 import Spacing from '@/components/Spacing';
 import { TopBarControl } from '@/components/TopBarControl';
@@ -27,7 +28,7 @@ const options = [
 
 export const PetitionForm = () => {
   const navigate = useNavigate();
-  const { mutate, isError, error } = usePostPetition();
+  const { mutate, isError, error, isPending } = usePostPetition();
   const [formData, setFormData] = useState<PetitionPostType>({
     title: '',
     petitionType: '',
@@ -46,6 +47,7 @@ export const PetitionForm = () => {
     ref.current?.close();
   };
   const onSubmit = () => {
+    ref.current?.close();
     mutate(formData);
     navigate('/');
   };
@@ -102,73 +104,77 @@ export const PetitionForm = () => {
           <Spacing size={5} />
         </div>
       </Modal>
-      <div className="flex flex-col">
-        <TopBarControl title="청원 내용을 입력해주세요" size={14}>
-          <span className="inline-flex items-center">
-            <img src={PencilIcon} alt="pencil" className="h-[24px] w-[24px]" />
-          </span>
-        </TopBarControl>
-        <Spacing size={4} />
-        <span className="text-base font-bold">분야</span>
-        <Spacing size={0.75} />
-        <select
-          className="h-9 w-full rounded-[10px] border border-light-gray px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#228CFF]"
-          value={formData.petitionType}
-          onChange={handleTypeChange}
-          onBlur={() => handleInputBlur('petitionType')}
-        >
-          <option value="" disabled>
-            선택해주세요
-          </option>
-          {options.map((item) => (
-            <option key={item.value} value={item.value}>
-              {item.label}
+      {isPending ? (
+        <Loading />
+      ) : (
+        <div className="flex flex-col">
+          <TopBarControl title="청원 내용을 입력해주세요" size={14}>
+            <span className="inline-flex items-center">
+              <img src={PencilIcon} alt="pencil" className="h-[24px] w-[24px]" />
+            </span>
+          </TopBarControl>
+          <Spacing size={4} />
+          <span className="text-base font-bold">분야</span>
+          <Spacing size={0.75} />
+          <select
+            className="h-9 w-full rounded-[10px] border border-light-gray px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#228CFF]"
+            value={formData.petitionType}
+            onChange={handleTypeChange}
+            onBlur={() => handleInputBlur('petitionType')}
+          >
+            <option value="" disabled>
+              선택해주세요
             </option>
-          ))}
-        </select>
-        <Spacing size={1.75} />
-        <Input
-          value={formData.title}
-          onChange={(e) => updateField({ title: e.target.value }, 'title')}
-          fieldLabel="제목"
-          placeholder="제목을 입력해주세요"
-          maxLength={100}
-          onBlur={() => handleInputBlur('title')}
-        ></Input>
-        <Spacing size={1.75} />
-        <CustomTextArea
-          value={formData.purpose}
-          onChange={(value) => updateField({ purpose: value }, 'purpose')}
-          onBlur={() => handleInputBlur('purpose')}
-          title="청원의 취지"
-          areaHeight={140}
-          placeholder="취지를 입력해주세요"
-          isError={didEdit.purpose && formData.purpose.trim() === ''}
-        />
-        <Spacing size={1.75} />
+            {options.map((item) => (
+              <option key={item.value} value={item.value}>
+                {item.label}
+              </option>
+            ))}
+          </select>
+          <Spacing size={1.75} />
+          <Input
+            value={formData.title}
+            onChange={(e) => updateField({ title: e.target.value }, 'title')}
+            fieldLabel="제목"
+            placeholder="제목을 입력해주세요"
+            maxLength={100}
+            onBlur={() => handleInputBlur('title')}
+          ></Input>
+          <Spacing size={1.75} />
+          <CustomTextArea
+            value={formData.purpose}
+            onChange={(value) => updateField({ purpose: value }, 'purpose')}
+            onBlur={() => handleInputBlur('purpose')}
+            title="청원의 취지"
+            areaHeight={140}
+            placeholder="취지를 입력해주세요"
+            isError={didEdit.purpose && formData.purpose.trim() === ''}
+          />
+          <Spacing size={1.75} />
 
-        <CustomTextArea
-          value={formData.content}
-          onChange={(value) => updateField({ content: value }, 'content')}
-          onBlur={() => handleInputBlur('content')}
-          title="청원의 내용"
-          areaHeight={329}
-          placeholder="내용을 입력해주세요"
-          isError={didEdit.contents && formData.content.trim() === ''}
-        />
+          <CustomTextArea
+            value={formData.content}
+            onChange={(value) => updateField({ content: value }, 'content')}
+            onBlur={() => handleInputBlur('content')}
+            title="청원의 내용"
+            areaHeight={329}
+            placeholder="내용을 입력해주세요"
+            isError={didEdit.contents && formData.content.trim() === ''}
+          />
 
-        <Spacing size={0.75} />
+          <Spacing size={0.75} />
 
-        <Spacing size={5.2} />
-        <Button
-          buttonLabel="청원하기"
-          onClick={() => ref.current?.showModal()}
-          disabled={isValid}
-          style={{
-            backgroundColor: !isValid ? '#1A8CFF' : '#B5B5B5',
-          }}
-        />
-      </div>
+          <Spacing size={5.2} />
+          <Button
+            buttonLabel="청원하기"
+            onClick={() => ref.current?.showModal()}
+            disabled={isValid}
+            style={{
+              backgroundColor: !isValid ? '#1A8CFF' : '#B5B5B5',
+            }}
+          />
+        </div>
+      )}
     </>
   );
 };
