@@ -1,14 +1,12 @@
-// PetitionResponseList = PetitionItemType[]
-
 export type PetitionCategoryType =
-  | 'MANUFACTURING'
-  | 'CONSTRUCTION'
-  | 'LOGISTICS*'
-  | 'SERVICE'
-  | 'AGRICULTURE'
-  | 'FISHERIES'
-  | 'HOUSECARE'
-  | 'PROFESSIONAL'
+  | 'WORKING_CONDITIONS'
+  | 'WAGES_AND_BENEFITS'
+  | 'HOUSING_ISSUES'
+  | 'LEGAL_PROTECTION'
+  | 'HEALTHCARE'
+  | 'EDUCATION_AND_ADAPTATION'
+  | 'DISCRIMINATION_PREVENTION'
+  | 'SOCIAL_RIGHTS_IMPROVEMENT'
   | '';
 
 export interface PetitionPostType {

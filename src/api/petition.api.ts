@@ -16,9 +16,7 @@ export const getPetitionList = async ({
 };
 
 export const postPetition = async (data: PetitionPostType): Promise<void> => {
-  const response = await api.post('/petitions', {
-    data,
-  });
+  const response = await api.post('/petitions', data);
 
   return response.data;
 };
