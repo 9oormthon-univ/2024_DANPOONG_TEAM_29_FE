@@ -2,8 +2,7 @@ import { useState, forwardRef, useEffect } from 'react';
 
 import { Button } from '@/components/Button';
 import Spacing from '@/components/Spacing';
-
-import { useCanvas } from '../../../hooks/useCanvas';
+import { useCanvas } from '@/hooks/useCanvas';
 
 interface PetitionModalProps {
   onClose: () => void;
