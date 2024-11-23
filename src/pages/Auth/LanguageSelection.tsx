@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import Spacing from '@/components/Spacing';
@@ -6,19 +7,17 @@ import { AuthMainTitle } from './components/AuthMainTitle';
 
 const SUPPORTED_LANGUAGES = [
   '한국어',
-  '중국어',
-  '베트남어',
-  '따갈로그어(필리핀)',
-  '태국어',
-  '인도네시아어',
-  '싱할라어(스리라카)',
+  '汉文',
+  'tiếng Việt',
+  'Bahasa Indonésia',
+  'ภาษาไทย',
 ] as const;
 
 type SupportedLanguage = (typeof SUPPORTED_LANGUAGES)[number];
 
 export const LanguageSelection = () => {
   const navigate = useNavigate();
-
+  const { t } = useTranslation('initInfo');
   const handleLanguageSelect = (language: SupportedLanguage) => {
     navigate('/', { state: { selectedLanguage: language } });
   };
@@ -26,7 +25,7 @@ export const LanguageSelection = () => {
     <div className="flex flex-col items-center">
       <Spacing size={8} direction="vertical" className="w-full" />
       <AuthMainTitle
-        title="자주 사용하시는 언어를 선택해주세요"
+        title={t('26')}
         authStyle="m-[2rem] h-[1.4375rem] w-full text-center text-base font-bold"
       />
       <div

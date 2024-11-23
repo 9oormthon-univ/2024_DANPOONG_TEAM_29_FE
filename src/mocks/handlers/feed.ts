@@ -144,7 +144,7 @@ const recommendUserDummy = [
 
 export const feedHandlers = [
   http.get('http://localhost:5173/posts', () => {
-    return HttpResponse.json(postListDummy);
+    return HttpResponse.json([postListDummy]);
   }),
   http.get('http://localhost:5173/users/recommend', () => {
     return HttpResponse.json(recommendUserDummy);
