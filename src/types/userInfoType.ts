@@ -1,4 +1,4 @@
-export type UserInfoType = 'nickName' | 'age' | 'career' | 'name' | 'language';
+//export type UserInfoType = 'nickName' | 'age' | 'career' | 'name' | 'language';
 
 export const JobLabels = [
   '제조업',
@@ -24,4 +24,22 @@ export const SUPPORTED_LANGUAGES = [
 export interface UserItem {
   type: UserInfoType;
   value: string;
+}
+
+export const AgeRange = {
+  10: '10대',
+  20: '20대',
+  30: '30대',
+  40: '40대',
+  50: '50대',
+  60: '60대',
+};
+
+export type AgeType = (typeof AgeRange)[keyof typeof AgeRange];
+export interface UserInfoType {
+  name: string;
+  age: AgeType;
+  career: string;
+  nickName: string;
+  language: string;
 }
