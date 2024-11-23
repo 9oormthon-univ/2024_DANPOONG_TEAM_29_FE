@@ -142,9 +142,6 @@ const recommendUserDummy = [
   { userId: 3, nickName: 'n3', profileImageUrl: 'img', part: '건설업' },
 ];
 
-/**
- * 해당 파일에서 생성한 handlers는 index.ts에서 import해야 합니다.
- */
 export const feedHandlers = [
   http.get('http://localhost:5173/posts', () => {
     return HttpResponse.json(postListDummy);
