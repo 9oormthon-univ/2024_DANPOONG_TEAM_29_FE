@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import CommentIcon from '@/assets/comment.svg?react';
@@ -32,7 +33,7 @@ interface PostDetail {
 export const PostDetail = () => {
   const { postId } = useParams();
   const navigate = useNavigate();
-
+  const { t } = useTranslation('form');
   if (isNaN(Number(postId))) navigate('/feed');
 
   const { data } = useGetPostDetail(Number(postId));
@@ -77,11 +78,11 @@ export const PostDetail = () => {
           <FollowIcon className="h-7" />
         </div>
         <hr className="my-4 border border-[#54BBFF]" />
-        <p className="text-lg leading-7">댓글</p>
+        <p className="text-lg leading-7">{t('6')}</p>
         <div className="mb-7 mt-4 flex items-center gap-3">
           <CommentIcon />
           <input
-            placeholder={`${authorInfo.authorNickName}님의 글에 댓글 달기`}
+            placeholder={`${authorInfo.authorNickName}${t('7')}`}
             className="grow rounded-[10px] border border-light-gray px-3 py-2 text-xs focus:border-[#228CFF] focus:outline-none"
           />
           {/* TODO: 댓글 추가 API 연결 */}

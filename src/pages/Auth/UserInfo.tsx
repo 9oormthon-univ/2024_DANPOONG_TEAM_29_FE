@@ -1,6 +1,7 @@
 import { useState } from 'react';
 
 import { useForm } from 'react-hook-form';
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import PrevClickIcon from '@/assets/prevClick.svg?react';
@@ -13,113 +14,98 @@ import { UserInfoType, AgeRange } from '@/types/userInfoType';
 
 import { AuthMainTitle } from './components/AuthMainTitle';
 
-const titleList = [
-  '사용하시는 언어가 무엇인가요?',
-  '이름이 어떻게 되시나요?',
-  '어떤 직종을 가지고 계신가요?',
-  '나이대를 선택해주세요.',
-  '닉네임을 입력해주세요.',
-  '당신의 이야기를 우리에게 들려주세요!',
-];
-
-const areaName = [
-  {
-    name: 'nickname',
-    label: '닉네임',
-    type: 'text',
-    validation: {
-      required: {
-        value: true,
-        message: '닉네임은 필수 항목입니다.',
-      },
-      maxLength: 20,
-      pattern: {
-        value: /^[a-zA-Z가-힣]+$/,
-        message: '닉네임에는 숫자나 특수문자를 사용할 수 없습니다.',
-      },
-    },
-  },
-  {
-    name: 'ageRange',
-    label: '나이',
-    type: 'select',
-    options: Object.values(AgeRange),
-    validation: {
-      required: {
-        value: true,
-        message: '나이는 필수 항목입니다.',
-      },
-    },
-  },
-  {
-    name: 'part',
-    label: '직종',
-    type: 'select',
-    options: [
-      '제조업',
-      '건설업',
-      '운전 및 운송',
-      '서비스업',
-      '농업 및 축산업',
-      '어업',
-      '가사 및 돌봄',
-      '전문직',
-    ],
-    validation: {
-      required: {
-        value: true,
-        message: '직업은 필수 항목입니다.',
-      },
-    },
-  },
-  {
-    name: 'name',
-    label: '이름',
-    type: 'text',
-    validation: {
-      required: {
-        value: true,
-        message: '이름은 필수 항목입니다.',
-      },
-      maxLength: 50,
-      pattern: {
-        value: /^[a-zA-Z가-힣]+$/,
-        message: '이름에는 숫자나 특수문자를 사용할 수 없습니다.',
-      },
-    },
-  },
-  {
-    name: 'language',
-    label: '언어',
-    type: 'select',
-    options: [
-      '한국어',
-      '중국어',
-      '베트남어',
-      '따갈로그어(필리핀)',
-      '태국어',
-      '인도네시아어',
-      '싱할라어(스리라카)',
-    ],
-    validation: {
-      required: {
-        value: true,
-        message: '언어는 필수 항목입니다.',
-      },
-    },
-  },
-] as const;
-
 export const UserInfo = () => {
   const [titleNum, setTitleNum] = useState(0);
   const { userList } = useInfoStore();
   const navigate = useNavigate();
   const { mutate, isPending, isError, error } = usePostUserInfo();
+  const { t } = useTranslation('initInfo');
+
+  const areaName = [
+    {
+      name: 'nickname',
+      label: t('20'),
+      type: 'text',
+      validation: {
+        required: {
+          value: true,
+          message: t('2'),
+        },
+        maxLength: 20,
+        pattern: {
+          value: /^[a-zA-Z가-힣]+$/,
+          message: t('2'),
+        },
+      },
+    },
+    {
+      name: 'ageRange',
+      label: t('21'),
+      type: 'select',
+      options: Object.values(AgeRange),
+      validation: {
+        required: {
+          value: true,
+          message: t('12'),
+        },
+      },
+    },
+    {
+      name: 'part',
+      label: t('22'),
+      type: 'select',
+      options: [t('4'), t('5'), t('6'), t('7'), t('8'), t('9'), t('10')],
+      validation: {
+        required: {
+          value: true,
+          message: t('11'),
+        },
+      },
+    },
+    {
+      name: 'name',
+      label: t('23'),
+      type: 'text',
+      validation: {
+        required: {
+          value: true,
+          message: t('2'),
+        },
+        maxLength: 50,
+        pattern: {
+          value: /^[a-zA-Z가-힣]+$/,
+          message: t('2'),
+        },
+      },
+    },
+    {
+      name: 'language',
+      label: t('24'),
+      type: 'select',
+      options: [
+        '한국어',
+        '중국어',
+        '베트남어',
+        '따갈로그어(필리핀)',
+        '태국어',
+        '인도네시아어',
+        '싱할라어(스리라카)',
+      ],
+      validation: {
+        required: {
+          value: true,
+          message: t('0'),
+        },
+      },
+    },
+  ] as const;
+  const titleList = [t('0'), t('1'), t('3'), t('12'), t('14'), t('17')];
 
   const onSubmit = (data: UserInfoType) => {
     console.log(data);
     mutate({ request: data, file: '' });
   };
+
   const {
     register,
     handleSubmit,
@@ -131,7 +117,7 @@ export const UserInfo = () => {
   const TOTAL_QUESTIONS = 5;
   const startIndex = Math.max(TOTAL_QUESTIONS - titleNum - 1, 0);
   const curList = areaName.slice(startIndex, TOTAL_QUESTIONS);
-  const buttonText = titleNum <= 3 ? '다음' : titleNum > 4 ? '환영합니다' : '제출하기';
+  const buttonText = titleNum <= 3 ? t('15') : titleNum > 4 ? t('18') : t('16');
 
   const handleNextClick = () => {
     if (titleNum === 4) {
@@ -148,6 +134,7 @@ export const UserInfo = () => {
   const handlePrevClick = () => {
     setTitleNum((num) => Math.max(num - 1, 0));
   };
+
   if (isError) {
     alert(error.message);
   }
@@ -203,7 +190,6 @@ export const UserInfo = () => {
                     </>
                   ) : (
                     <>
-                      {/* TODO: fix:자동완성 시 배경이 바뀜 */}
                       <input
                         id={`input-${item.name}`}
                         disabled={index >= 1}
@@ -223,7 +209,7 @@ export const UserInfo = () => {
             </form>
           )}
           <Button
-            buttonLabel={isPending ? '처리 중...' : buttonText}
+            buttonLabel={isPending ? t('19') : buttonText}
             onClick={handleNextClick}
             disabled={!isValid || isPending}
             aria-busy={isPending}

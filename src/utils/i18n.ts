@@ -12,10 +12,7 @@ i18next
       'initInfo',
       'home',
       'feed',
-      'post',
       'form',
-      'petitionFeed',
-      'petitionPost',
       'petitionForm',
     ],
     fallbackLng: 'ko',
@@ -31,5 +28,29 @@ i18next
       caches: ['localStorage'],
     },
   });
+
+i18next.use({
+  type: 'postProcessor',
+  name: 'petitionNameHandler',
+  process: (value: string, _: unknown, options: Record<string, string>) => {
+    return value.replace('{{name}}', options.name);
+  },
+});
+
+i18next.use({
+  type: 'postProcessor',
+  name: 'petitionTitleHandler',
+  process: (value: string, _: unknown, options: Record<string, string>) => {
+    return value.replace('{{title}}', options.name);
+  },
+});
+
+i18next.use({
+  type: 'postProcessor',
+  name: 'feedEmptyHandler',
+  process: (value: string, _: unknown, options: Record<string, string>) => {
+    return value.replace('{{feed}}', options.name);
+  },
+});
 
 export default i18next;

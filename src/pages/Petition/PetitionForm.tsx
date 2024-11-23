@@ -1,5 +1,6 @@
 import { useRef, useState } from 'react';
 
+import { useTranslation } from 'react-i18next';
 import { useNavigate } from 'react-router-dom';
 
 import EraseIcon from '@/assets/petition/eraser.png';
@@ -15,19 +16,21 @@ import { PetitionPostType } from '@/types/petitionType';
 
 import { CustomTextArea } from './components/PetitionTextArea';
 
-const options = [
-  { value: 'MANUFACTURING', label: '제조업' },
-  { value: 'CONSTRUCTION', label: '건설업' },
-  { value: 'LOGISTICS', label: '운전 및 운송' },
-  { value: 'SERVICE', label: '서비스업' },
-  { value: 'AGRICULTURE', label: '농업 및 축산업' },
-  { value: 'FISHERIES', label: '어업' },
-  { value: 'HOUSECARE', label: '가사 및 돌봄' },
-  { value: 'PROFESSIONAL', label: '전문직' },
-];
-
 export const PetitionForm = () => {
   const navigate = useNavigate();
+  const { t } = useTranslation('petitionForm');
+
+  const options = [
+    { value: t('4'), label: '제조업' },
+    { value: t('5'), label: '건설업' },
+    { value: t('6'), label: '운전 및 운송' },
+    { value: t('7'), label: '서비스업' },
+    { value: t('8'), label: '농업 및 축산업' },
+    { value: t('9'), label: '어업' },
+    { value: t('10'), label: '가사 및 돌봄' },
+    { value: t('11'), label: '전문직' },
+  ];
+
   const { mutate, isError, error, isPending } = usePostPetition();
   const [formData, setFormData] = useState<PetitionPostType>({
     title: '',
@@ -85,22 +88,12 @@ export const PetitionForm = () => {
 
   return (
     <>
-      <Modal
-        ref={ref}
-        onClose={onClose}
-        onSubmit={onSubmit}
-        buttonLabel="제출하기"
-        disabled={false}
-      >
+      <Modal ref={ref} onClose={onClose} onSubmit={onSubmit} buttonLabel={t('21')} disabled={false}>
         <div className="flex flex-col items-center">
           <img src={EraseIcon} alt="eraser" className="h-[150px] w-[150px]" />
-          <p className="text-sm font-bold leading-[25px]">
-            청원 제출 후에는 수정이나 삭제가 어렵습니다.
-          </p>
-          <p className="text-sm font-bold leading-[25px]">제출 전에 한 번 더 확인해주세요!</p>
-          <p className="text-center text-[10px] font-light leading-[25px]">
-            수정 및 삭제 필요 시 관리자에게 요청해주세요.
-          </p>
+          <p className="text-sm font-bold leading-[25px]">{t('18')}</p>
+          <p className="text-sm font-bold leading-[25px]">{t('19')}</p>
+          <p className="text-center text-[10px] font-light leading-[25px]">{t('20')}</p>
           <Spacing size={5} />
         </div>
       </Modal>
@@ -108,13 +101,13 @@ export const PetitionForm = () => {
         <Loading />
       ) : (
         <div className="flex flex-col">
-          <TopBarControl title="청원 내용을 입력해주세요" size={14}>
+          <TopBarControl title={t('0')} size={14}>
             <span className="inline-flex items-center">
               <img src={PencilIcon} alt="pencil" className="h-[24px] w-[24px]" />
             </span>
           </TopBarControl>
           <Spacing size={4} />
-          <span className="text-base font-bold">분야</span>
+          <span className="text-base font-bold">{t('1')}</span>
           <Spacing size={0.75} />
           <select
             className="h-9 w-full rounded-[10px] border border-light-gray px-3 py-2 text-sm outline-none focus:ring-1 focus:ring-[#228CFF]"
@@ -123,7 +116,7 @@ export const PetitionForm = () => {
             onBlur={() => handleInputBlur('petitionType')}
           >
             <option value="" disabled>
-              선택해주세요
+              {t('2')}
             </option>
             {options.map((item) => (
               <option key={item.value} value={item.value}>
@@ -135,8 +128,8 @@ export const PetitionForm = () => {
           <Input
             value={formData.title}
             onChange={(e) => updateField({ title: e.target.value }, 'title')}
-            fieldLabel="제목"
-            placeholder="제목을 입력해주세요"
+            fieldLabel={t('12')}
+            placeholder={t('13')}
             maxLength={100}
             onBlur={() => handleInputBlur('title')}
           ></Input>
@@ -145,9 +138,9 @@ export const PetitionForm = () => {
             value={formData.purpose}
             onChange={(value) => updateField({ purpose: value }, 'purpose')}
             onBlur={() => handleInputBlur('purpose')}
-            title="청원의 취지"
+            title={t('14')}
             areaHeight={140}
-            placeholder="취지를 입력해주세요"
+            placeholder={t('15')}
             isError={didEdit.purpose && formData.purpose.trim() === ''}
           />
           <Spacing size={1.75} />
@@ -156,9 +149,9 @@ export const PetitionForm = () => {
             value={formData.content}
             onChange={(value) => updateField({ content: value }, 'content')}
             onBlur={() => handleInputBlur('content')}
-            title="청원의 내용"
+            title={t('16')}
             areaHeight={329}
-            placeholder="내용을 입력해주세요"
+            placeholder={t('17')}
             isError={didEdit.contents && formData.content.trim() === ''}
           />
 
@@ -166,7 +159,7 @@ export const PetitionForm = () => {
 
           <Spacing size={5.2} />
           <Button
-            buttonLabel="청원하기"
+            buttonLabel={t('21')}
             onClick={() => ref.current?.showModal()}
             disabled={isValid}
             style={{
