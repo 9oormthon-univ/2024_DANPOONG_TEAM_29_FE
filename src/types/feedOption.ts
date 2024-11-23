@@ -1,8 +1,9 @@
-import { FilterType } from './filterType';
+import { FilterType, SortType } from './filterType';
 
 export interface PostListOption {
   page?: number;
-  sortType: FilterType;
+  sortType: SortType;
+  part: FilterType | '';
 }
 
 export interface RecommendUserOption {
