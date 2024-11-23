@@ -1,3 +1,20 @@
+export interface PostDetailResponseDetail {
+  hasNext: boolean;
+  size: number;
+  postResponse: PostItemType;
+  commentResponseList: CommentItemType[];
+}
+
+export interface PostListResponse {
+  sortType: string | null;
+  part: string | null;
+  size: number;
+  includeExpired: boolean;
+  hasNext: boolean;
+  page: number;
+  postResponseList: PostItemType[];
+}
+
 export interface PostItemType {
   authorInfo: {
     authorId: number;
@@ -21,9 +38,4 @@ interface CommentItemType {
   commentId: number;
   content: string;
   createdAt: string;
-}
-
-export interface PostDetailType {
-  postResponse: PostItemType;
-  commentResponseList: CommentItemType[];
 }

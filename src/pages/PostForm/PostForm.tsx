@@ -54,12 +54,13 @@ export const PostForm = () => {
   const handleSubmit = async () => {
     const multipartFormData = new FormData();
 
-    multipartFormData.append('title', formData.title);
-    multipartFormData.append('description', formData.description);
+    const postUploadRequest = JSON.stringify({
+      title: formData.title,
+      content: formData.description,
+      tags: formData.tagList,
+    });
+    multipartFormData.append('postUploadRequest', postUploadRequest);
 
-    if (formData.tagList && formData.tagList.length > 0) {
-      multipartFormData.append('tags', JSON.stringify(formData.tagList));
-    }
     if (formData.image) {
       multipartFormData.append('file', formData.image);
     }

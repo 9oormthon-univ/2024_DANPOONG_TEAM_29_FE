@@ -7,9 +7,9 @@ const api = axios.create({
 
 api.interceptors.request.use((config) => {
   // TODO: 로그인 이후 저장된 토큰 가져오기
-  const token = '';
+  const token = import.meta.env.VITE_TEMP_TOKEN;
   if (token) {
-    config.headers.Authorization = `${token}`;
+    config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
